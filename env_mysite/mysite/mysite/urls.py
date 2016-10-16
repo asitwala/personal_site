@@ -24,6 +24,7 @@ urlpatterns = [
 	url(r'^$', homepage),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^hello/$', hello),
+    url(r'', include('blog.urls')),
 ]
 
 # 'r' character in front of the regular expression string
