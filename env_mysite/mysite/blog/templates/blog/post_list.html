@@ -1,11 +1,41 @@
+{% load staticfiles %}
+
 <html>
 	<head>
-		<title> Amy's blog! </title>
+		<link rel = "stylesheet" href = "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel = "stylesheet" href = "{% static 'css/blog.css' %}">
+		<title> Amy's Blog! </title>
 	</head>
 
 	<body>
-		<p> Hi there! </p>
-		<p> It works! </p>
+		<div class = "background">
+		</div>
+
+		<div class = "header"> 
+			<ul>
+				<li><a href = " " >| Home </a></li>
+				<li><a href = " " >| About </a></li>
+				<li><a href = " " >| Projects </a></li>
+				<li><a href = " " >| Art </a></li>
+				<li><a href = " " >| Links </a></li>
+			</ul>
+		</div> 
+
+		<div class = "post_container">
+			{% for post in posts %}
+				<div>
+					<h1><a href = " " > {{ post.title }}</a>
+						<span class = "date">
+							<span class = "date_posted">| Posted:
+							</span> {{ post.published_date }}
+						</span>
+					</h1>
+					<div class = "post_content"> {{ post.text|linebreaksbr}} </div>
+					<hr>
+				</div>
+			{% endfor %}
+		</div>
+
 	</body>
 
 <html>

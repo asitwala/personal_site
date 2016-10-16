@@ -1,0 +1,64 @@
+
+h1 a {
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	font-weight: 100;
+	font-size: 3.5vw;
+}
+
+h1 .date {
+	font-size: 1.25vw;
+	font-weight: 100;
+	margin-left: 1.25em;
+	color: rgba(241, 169, 73, 0.7); /* orange-yellow */
+}
+
+.date_posted {
+	color: #c5078c;
+}
+
+body { 
+	color: rgba(172, 55, 221, 0.65); /* purple */ 
+	padding-left: 2em;
+	font-size: 1.5vw;
+	font-family: "Gill Sans";
+	font-weight: 100;
+	background: url(../images/site_blog.jpg);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+body .header {
+	margin-top: 2.75em;
+	width: 100%;
+}
+
+.post_container {
+	width: 65%;
+}
+
+.post_content {
+	background-color: rgba(0, 0, 0, 0.25);
+	padding: 1.5em;
+}
+
+
+/* reference for horizontal header: http://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu */
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0; 
+	overflow: hidden;
+}
+
+li a {
+	float: left;
+	margin-right: 4em;
+	font-size: 2vw;
+	color: #c5078c;
+}
+
+hr {
+	border: 0;
+	border-top: 0.1em solid rgba(197, 7, 170, 0.4); /* magenta */
+}
