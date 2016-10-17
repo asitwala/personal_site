@@ -4,12 +4,10 @@
 	<head>
 		<link rel = "stylesheet" href = "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel = "stylesheet" href = "{% static 'css/blog.css' %}">
-		<title> Amy's Blog! </title>
+		<title>Blog</title>
 	</head>
 
 	<body>
-		<div class = "background">
-		</div>
 
 		<div class = "header"> 
 			<ul>
@@ -24,15 +22,18 @@
 		<div class = "post_container">
 			{% for post in posts %}
 				<div>
-					<h1><a href = " " > {{ post.title }}</a>
+					<h1><a href = " " class = "post_titleinfo"> {{ post.title }}</a>
 						<span class = "date">
 							<span class = "date_posted">| Posted:
 							</span> {{ post.published_date }}
 						</span>
 					</h1>
+
 					<div class = "post_content"> {{ post.text|linebreaksbr}} </div>
+
 					<hr>
 				</div>
+
 			{% endfor %}
 		</div>
 

@@ -1,5 +1,6 @@
 
-from django.http import HttpResponse 
+from django.http import HttpResponse
+from django.shortcuts import render
 
 # HttpResponse is a class
 
@@ -15,9 +16,6 @@ def hello(request):
 	content = "Hello, world!"
 	return HttpResponse(content)
 
-def homepage(request): 
-	content = "Welcome to the homepage!"
-	return HttpResponse(content)
 
 # we need to tell Django explicitly that we're activating this view at a particular URL
 # hook up a view function to a particular URL 

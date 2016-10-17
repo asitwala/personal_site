@@ -1,0 +1,86 @@
+body { 
+	background-image: url(../images/site_about.jpg);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	margin: 0;
+	padding: 0;
+}
+
+.header {
+	font-family: "Gill Sans", sans-serif;
+	font-weight: 100;
+	text-align: center;
+	margin-top: 5%;
+	width: 100%;
+}
+
+/* reference for horizontal header: http://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu */
+
+ul { 
+	list-style-type: none;
+	margin: 0;
+	margin-left: 12%;
+	margin-top: ;
+	padding: 0;
+	overflow: hidden;
+}
+
+li a { 
+	float: left;
+	margin-left: 12.5%;
+	font-size: 1.5vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+li a:hover {
+	color: rgba(172, 55, 221, 0.85); /* purple */
+}
+
+
+body p {
+	margin: 0; 
+	margin-bottom: 0.3em; /* vertical distance between sentences */
+}
+
+body .main_content {
+	font-family: "Gill Sans", sans-serif;
+	font-weight: 100;
+	font-size: 1.25vw;
+	width: 50%;
+	position: absolute;
+	top: 33%;
+	left: 48%;
+
+}
+body h2 { 
+	font-size: 3vw;
+	font-weight: 100;
+	margin: 0;
+	margin-top: 0.75em; /* distance from "Hey" to "I am" */
+	padding: 0;
+}
+
+.magenta {
+	color: rgba(197, 7, 170, 0.85);
+}
+
+.orange {
+	color: rgba(241, 169, 73, 0.85);
+}
+
+.purple {
+	color: rgba(172, 55, 221, 0.85); 
+}
+
+#contact {
+	margin-top: 2em;
+}
+
+#contact a {
+	color: rgba(172, 55, 221, 0.85); 
+}
+
+#contact a:hover {
+	color: rgba(241, 169, 73, 0.85);
+}

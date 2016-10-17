@@ -1,45 +1,61 @@
 
 h1 a {
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	font-family: inherit, 'Gill Sans', sans-serif;
 	font-weight: 100;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
 	font-size: 3.5vw;
+	margin-left: 1em;
 }
+
+h1 a:hover {
+	text-decoration: none;
+	color: rgba(197, 7, 170, 1); /* magenta */
+}
+
 
 h1 .date {
-	font-size: 1.25vw;
+	font-family: inherit, 'Gill Sans', sans-serif;
 	font-weight: 100;
+	font-size: 1.25vw;
 	margin-left: 1.25em;
-	color: rgba(241, 169, 73, 0.7); /* orange-yellow */
+	color: rgba(241, 169, 73, 1.0); /* orange-yellow */
 }
 
-.date_posted {
-	color: #c5078c;
+h1 .date_posted {
+	color: #c5078c; /* magenta */ 
 }
 
 body { 
-	color: rgba(172, 55, 221, 0.65); /* purple */ 
-	padding-left: 2em;
-	font-size: 1.5vw;
-	font-family: "Gill Sans";
-	font-weight: 100;
 	background: url(../images/site_blog.jpg);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
+	background-attachment: fixed; /* use so that background doesn't scroll */
+	margin: 0;
+	padding: 0;
 }
 
 body .header {
 	margin-top: 2.75em;
+	margin-left: 2.5em;
 	width: 100%;
+	font-family: "Gill Sans", sans-serif; 
+	font-weight: 100;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
 }
 
 .post_container {
 	width: 65%;
 }
 
+/* deals with just the main text of the post */ 
 .post_content {
 	background-color: rgba(0, 0, 0, 0.25);
 	padding: 1.5em;
+	margin-left: 2.5em;
+	font-size: 1.25vw;
+	font-family: "Gill Sans", sans-serif; 
+	font-weight: 100;
+	color: rgba(172, 55, 221, 0.75); /* purple */ 
 }
 
 
@@ -53,9 +69,13 @@ ul {
 
 li a {
 	float: left;
-	margin-right: 4em;
-	font-size: 2vw;
-	color: #c5078c;
+	margin-right: 10%;
+	font-size: 1.5vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+li a:hover {
+	color: rgba(172, 55, 221, 0.85); /* purple */
 }
 
 hr {

@@ -15,13 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from mysite.views import hello, homepage
+from mysite.views import hello
 
 
 admin.autodiscover()
 
 urlpatterns = [
-	url(r'^$', homepage),
+	url(r'', include('static_pages.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^hello/$', hello),
     url(r'', include('blog.urls')),

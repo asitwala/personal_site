@@ -1,0 +1,79 @@
+body {
+	background: url(../images/site_homepage.jpg);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+}
+
+.header {
+	font-family: "Gill Sans", sans-serif;
+	font-weight: 100;
+	text-align: center;
+	margin-top: 5%;
+	width: 100%;
+}
+
+/* reference for horizontal header: http://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu */
+ul {
+	list-style-type: none;
+	margin: 0;
+	margin-left: 14%;
+	padding: 0; 
+	overflow: hidden;
+}
+
+li a {
+	float: left;
+	margin-left: 12.5%;
+	font-size: 1.5vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+.main_content {
+	text-align: center;
+	margin-top: 10%;
+	margin-right: 30%;
+	padding: 0;
+	margin-bottom: 15%;
+	font-family: "Gill Sans", sans-serif;
+	font-weight: 100;
+	font-size: 2vw;
+}
+
+.main_content h1 {
+	font-family: "Advent Pro", sans-serif;
+	letter-spacing: -1px;
+	font-weight: 100;
+	font-size: 3.75vw;
+	color: rgba(241, 169, 73, 1); /* orange-yellow */
+	margin-bottom: 0;
+
+}
+
+/* for "a" in h1 ("Amy Sitwala") */ 
+#a {
+	font-family: "Raleway", sans-serif;
+}
+
+#plus_icon {
+	color: rgba(197, 7, 170, 0.85); /* magenta */
+	font-family: "Advent Pro", sans-serif; 
+	font-size: 4vw;
+	font-weight: bold;
+	margin: 0;
+}
+
+#desc_1 {
+	color: rgba(172, 55, 221, 0.85); /* purple */ 
+}
+
+#desc_2 {
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+#desc_3 {
+	color: rgba(197, 7, 170, 0.85); /* magenta */
+}
+
+
