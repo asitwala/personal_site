@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def links_page(request): 
+	return render(request, 'links/links_page.html', {})

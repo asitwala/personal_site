@@ -81,4 +81,5 @@ li a:hover {
 hr {
 	border: 0;
 	border-top: 0.1em solid rgba(197, 7, 170, 0.4); /* magenta */
+	margin-left: 2.25em;
 }

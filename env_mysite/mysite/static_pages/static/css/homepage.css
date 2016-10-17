@@ -30,6 +30,11 @@ li a {
 	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
 }
 
+li a:hover {
+	text-decoration: none;
+	color: rgba(172, 55, 221, 0.85); /* purple */ 
+}
+
 .main_content {
 	text-align: center;
 	margin-top: 10%;
@@ -54,6 +59,7 @@ li a {
 /* for "a" in h1 ("Amy Sitwala") */ 
 #a {
 	font-family: "Raleway", sans-serif;
+	font-weight: 100; /* just in case "Raleway" loads and "Advent Pro" doesn't */
 }
 
 #plus_icon {
