@@ -13,7 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import include, url, patterns
+from django.conf.urls.static import static 
+from django.conf import settings 
 from django.contrib import admin
 from mysite.views import hello
 
@@ -29,6 +31,12 @@ urlpatterns = [
     url(r'', include('projects.urls')),
     url(r'', include('gallery.urls')), 
 ]
+
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.MEDIA_ROOT}))
 
 # 'r' character in front of the regular expression string
 # this tells Python that the string is a "raw string" -- its contents

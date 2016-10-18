@@ -20,8 +20,11 @@
 		</div> 
 
 		<div class = "post_container">
+
+			<!-- deal with post text --> 
 			{% for post in posts %}
 				<div>
+					<!-- post title and date published -->
 					<h1><a href = " " class = "post_titleinfo"> {{ post.title }}</a>
 						<span class = "date">
 							<span class = "date_posted">| Posted:
@@ -29,12 +32,24 @@
 						</span>
 					</h1>
 
-					<div class = "post_content"> {{ post.text|linebreaksbr}} </div>
+					<!-- post text --> 
+					<div class = "post_content"> {{ post.text|linebreaksbr }}
 
-					<hr>
+						<!-- post image (optional) --> 
+						{% for post_image in post_images %}
+							{% if post_image.post == post %}
+								<a href = "{{post_image.image.url}}" class = "image_link">
+									<img src = "{{post_image.image.url}}" />
+								</a>
+							{% endif %}
+						{% endfor %}
+
+					</div>
+
+					<hr> <!-- horizontal rule (break between posts) -->
 				</div>
-
 			{% endfor %}
+
 		</div>
 
 	</body>

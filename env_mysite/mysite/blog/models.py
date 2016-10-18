@@ -19,3 +19,9 @@ class Post(models.Model):
 	def __str__(self): 
 		return self.title 
 
+
+class PostImage(models.Model): 
+	image = models.ImageField(upload_to = 'images/', null = True)
+	post = models.ForeignKey(Post)
+
+
