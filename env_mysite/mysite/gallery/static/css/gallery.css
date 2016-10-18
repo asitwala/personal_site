@@ -41,9 +41,9 @@ li a:hover {
 .main_content {
 	width: 72.5vw;
 	text-align: center;
-	font-family: 'Gill Sans', sans-serif;
+	font-family: inherit, 'Gill Sans', sans-serif;
 	font-weight: 100;
-	font-size: 1.5vw;
+	font-size: 1.25vw;
 }
 
 /* reference: http://stackoverflow.com/questions/21371594/display-div-or-span-over-image-on-hover */

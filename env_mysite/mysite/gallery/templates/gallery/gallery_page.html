@@ -3,6 +3,7 @@
 <html>
 
 	<head>
+		<link rel = "stylesheet" href = "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel = "stylesheet" href = "{% static 'css/gallery.css' %}">
 		<title>Art Gallery</title>
 	</head>
@@ -12,18 +13,18 @@
 
 		<div class = "header">
 			<ul>
-				<li><a href = " " >| Home </a></li>
-				<li><a href = " " >| About </a></li>
-				<li><a href = " " >| Projects </a></li>
-				<li><a href = " " >| Blog </a></li>
-				<li><a href = " " >| Links </a></li>
+				<li><a href = "{% url 'homepage' %}">| Home </a></li>
+				<li><a href = "{% url 'about' %}" >| About </a></li>
+				<li><a href = "{% url 'projects_page' %}">| Projects </a></li>
+				<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
+				<li><a href = "{% url 'links_page' %}" >| Links </a></li>
 			</ul>
 		</div>
 
 		<div class = "main_content">
 				{% for painting in paintings %}
 					<div class = "image_effects">
-						<a href = "{{ painting.image.url }}" class = "image_link">
+						<a href = "{% url 'gallery_detail' pk=painting.pk %}" class = "image_link">
 							<img src = "{{ painting.image.url }}" alt = "{{painting.title}}"/>
 							<div class = "cover">{{ painting.title }}</div>
 						</a>
