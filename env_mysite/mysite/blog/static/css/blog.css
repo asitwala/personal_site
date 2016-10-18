@@ -52,7 +52,7 @@ body .header {
 	background-color: rgba(0, 0, 0, 0.25);
 	padding: 1.5em;
 	margin-left: 2.5em;
-	font-size: 1.25vw;
+	font-size: 1.35vw;
 	font-family: "Gill Sans", sans-serif; 
 	font-weight: 100;
 	color: rgba(172, 55, 221, 0.75); /* purple */ 
@@ -79,6 +79,7 @@ li a:hover {
 	color: rgba(172, 55, 221, 0.85); /* purple */
 }
 
+/* within "post_content" div */
 img {
 	width: 80%;
 	opacity: 0.8; 

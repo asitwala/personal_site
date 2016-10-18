@@ -24,6 +24,7 @@ ul {
 }
 
 li a {
+	text-decoration: none; 
 	float: left;
 	margin-left: 12.5%;
 	font-size: 1.5vw;

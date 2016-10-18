@@ -2,6 +2,83 @@ body {
 	background: url(../images/site_gallery.jpg);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	margin: 0;
 	padding: 0;
 }
+
+.header {
+	font-family: "Gill Sans", sans-serif;
+	font-weight: 100;
+	text-align: center;
+	margin-top: 5%;
+	width: 100%;
+}
+
+/* reference for horizontal header: http://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu */
+
+ul { 
+	list-style-type: none; 
+	margin-left: 4.25%;
+	padding: 0;
+	overflow: hidden;
+}
+
+li a { 
+	text-decoration: none;
+	float: left;
+	margin-right: 9.5%;
+	font-size: 1.5vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+li a:hover {
+	text-decoration: none;
+	color: rgba(172, 55, 221, 0.85); /* purple */
+}
+
+
+.main_content {
+	width: 72.5vw;
+	text-align: center;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1.5vw;
+}
+
+/* reference: http://stackoverflow.com/questions/21371594/display-div-or-span-over-image-on-hover */
+
+.main_content .image_effects {
+	position: relative;
+	display: inline-block; 
+}
+
+.cover {
+	display: none;
+}
+
+.image_effects:hover .cover {
+	color: rgba(241, 169, 73, 1); /* text color: orange-yellow */;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(172, 55, 221, 0.25); /* overlay color: purple */
+	position: absolute; 
+	top: 0;
+	left: 0;
+	display: inline-block;
+	text-decoration: none; 
+}
+
+img {
+	height: 17.5vw;
+	margin: 1.5vw;
+	padding: 1vw;
+	background-color: rgba(0, 0, 0, 0.3);
+	border-style: solid;
+	border-width: 0.05vw;
+	border-color: rgba(241, 169, 73, 0.25); /* orange-yellow */
+}
+
+
+
+

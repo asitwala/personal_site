@@ -11,7 +11,6 @@ class Post(models.Model):
 	created_date = models.DateTimeField(default = timezone.now)
 	published_date = models.DateTimeField(blank = True, null = True)
 
-
 	def publish(self): 
 		self.published_date = timezone.now()
 		self.save()
@@ -19,7 +18,8 @@ class Post(models.Model):
 	def __str__(self): 
 		return self.title 
 
-
+# define a separate class in order to deal with uploading multiple images 
+# reference: http://stackoverflow.com/questions/9444762/django-admin-multiple-photo-upload
 class PostImage(models.Model): 
 	image = models.ImageField(upload_to = 'images/', null = True)
 	post = models.ForeignKey(Post)

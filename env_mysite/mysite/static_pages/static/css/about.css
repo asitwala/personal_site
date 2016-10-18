@@ -21,12 +21,12 @@ ul {
 	list-style-type: none;
 	margin: 0;
 	margin-left: 12%;
-	margin-top: ;
 	padding: 0;
 	overflow: hidden;
 }
 
 li a { 
+	text-decoration: none; 
 	float: left;
 	margin-left: 12.5%;
 	font-size: 1.5vw;
@@ -34,6 +34,7 @@ li a {
 }
 
 li a:hover {
+	text-decoration: none ;
 	color: rgba(172, 55, 221, 0.85); /* purple */
 }
 
