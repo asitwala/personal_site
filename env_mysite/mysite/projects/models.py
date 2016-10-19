@@ -11,6 +11,7 @@ class Project(models.Model):
 	team = models.CharField(max_length = 200)
 	text = models.TextField()
 	link = models.CharField(max_length = 200, default = 'empty')
+	nickname = models.CharField(max_length = 100, default = 'empty')
 
 	def publish(self): 
 		self.published_date = timezone.now()

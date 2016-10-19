@@ -95,17 +95,15 @@ li a:hover {
 }
 
 
-.project_info {
+.project_content {
 	background-color: rgba(255, 255, 255, 0.05);
 	width: 67.5%;
 	float: right;
 	padding: 2%;
 	margin: 2%;
-	overflow: auto;
-	padding-bottom:10px;
 }
 
-.project_info img {
+.project_content img {
 	width: 80%;
 	padding: 2%;
 	margin: 2%;
@@ -116,7 +114,7 @@ li a:hover {
 	border-radius: 0.5em;
 }
 
-.project_info h1 {
+.project_content h1 {
 	font-family: inherit, 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 3.5vw;
@@ -124,19 +122,95 @@ li a:hover {
 	text-align: center; 
 }
 
-.project_info h6 {
+.project_content h1 a {
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+.project_content h1 a:hover {
+	text-decoration: none; 
+	color: rgba(241, 169, 73, 0.85); /* just in case */
+}
+
+.project_content h6 {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1.5vw;
-	color: rgba(197, 7, 170, 1); /* magenta */ 
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */ 
 	text-align: center;
 }
 
-.project_info .project_text {
+.project_content h6 span {
+	color: rgba(197, 7, 170, 1); /* magenta */
+}
+
+.project_content h6 a {
+	color: rgba(197, 7, 170, 1); /* magenta */
+}
+
+.project_content h6 a:hover {
+	text-decoration: none; 
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+.project_content .project_text {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100; 
 	font-size: 1.5vw;
-	color: rgba(172, 55, 221, 0.85);
+	color: rgba(172, 55, 221, 0.85); /* purple */ 
+	background: rgba(0, 0, 0, 0.25);
+	border-radius: 0.5em;
+	padding: 2%;
+}
+
+hr {
+	border: 0;
+	border-top: 0.1em solid rgba(241, 169, 73, 0.35); /* orange-yellow */
+	margin: 2%;
+}
+
+#project_divider {
+	width: 67.5%;
+	float: right;
+	padding: 2%;
+	margin: 2%;
+	padding-top: 0; 
+	padding-bottom: 0; 
+}
+
+#project_divider hr{
+	border: 0;
+	border-top: 0.1em solid rgba(197, 7, 170, 0.35); /* magenta */
+	width: 100%;
+	margin: 0; 
+	padding: 0; 
+	margin-left: auto; 
+	margin-right: auto; 
+	display: block; 
+}
+
+#nav_bar {
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100; 
+	font-size: 1.5vw;
+	position: fixed;
+	top: 70%;
+	left: 2%;
+	width: 20%;
+	float: left;
+
+}
+
+.nav_content a{
+	color: rgba(197, 7, 170, 0.85); /* magenta */ 
+}
+
+.nav_content a:hover {
+	text-decoration: none;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+.nav_content span {
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */ 
 }
 
 

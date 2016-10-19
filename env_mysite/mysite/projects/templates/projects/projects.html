@@ -21,10 +21,15 @@
 				</ul>
 			</div> 
 
-			<div class = "project_info"> 
-				{% for project in projects %}
+		
+			{% for project in projects %}
 
-					<h1> {{ project.title }} </h1>
+				<div class = "project_content"> 
+					<h1>
+						<a  name = "{{ project.nickname }}"> 
+							{{ project.title }} 
+						</a>
+					</h1>
 
 					{% if project.image_at_top %}
 
@@ -34,26 +39,49 @@
 							{% endif %}
 						{% endfor %}
 
-						<h6> Organization: {{ project.organization }} </h6>
-						<h6> Team: {{ project.team }} </h6>
+						<h6> Organization | 
+							<span>
+								{{ project.organization }} 
+							</span>
+						</h6>
+
+						<h6> Team | 
+							<span>
+								{{ project.team }}
+							</span>
+						</h6>
 
 						{% if project.link != 'empty' %}
-							<h6>Check It Out!<a href = "{{ project.link }}" alt = "{{ project.title }}"> {{ project.link }}</a> 
+							<h6>Check It Out | 
+								<a href = "{{ project.link }}" alt = "{{ project.title }}"> 
+									{{ project.link }}
+								</a> 
 							</h6>
 						{% endif %}
-
+						<hr>
 						<p class = "project_text"> {{ project.text }} </p>
 
 					{% else %}
 
-						<h6> Organization: {{ project.organization }} </h6>
-						<h6> Team: {{ project.team }} </h6>
+						<h6> Organization | 
+							<span>
+								{{ project.organization }}
+							</span>
+						</h6>
+
+						<h6> Team | 
+							<span>
+								{{ project.team }}
+							</span> 
+						</h6>
 
 						{% if project.link != 'empty' %}
-							<h6>Check It Out!<a href = "{{ project.link }}" alt = "{{ project.title }}"> {{ project.link }}</a> 
+							<h6>Check It Out | 
+								<a href = "{{ project.link }}" alt = "{{ project.title }}"> {{ project.link }}</a> 
 							</h6>
 						{% endif %}
 
+						<hr>
 						<p class = "project_text"> {{ project.text }} </p>
 
 						{% for project_image in project_images %}
@@ -63,10 +91,26 @@
 						{% endfor %}
 
 					{% endif %}
+				</div>
 
-				{% endfor %}
+				<div id = "project_divider">
+					<hr>
+				</div>
+				
+			{% endfor %}
 
-			</div> 
+			<div id = "nav_bar">
+				<p class = "nav_content"> 
+					{% for project in projects %}
+						<a href = "#{{ project.nickname }}">
+							{{ project.nickname }} 
+						</a>
+						<span> | </span>
+					{% endfor %}
+				</p>
+			</div>
+
+
 		</div>
 
 
