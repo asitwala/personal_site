@@ -115,6 +115,28 @@ li a:hover {
 	color: rgba(172, 55, 221, 0.85); /* purple */
 }
 
+/* reference: http://www.cssstickyfooter.com/using-sticky-footer-code.html
+   to make a sticky footer */
+
+#container {
+	min-height: 100%;
+}
+
+#footer {
+	float: left; 
+	margin-left: 2%;
+	padding: 2%;
+	position: relative;
+	height: 2.5vw;
+	clear: both;
+	padding-left: 3%;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1.25vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+
 /* within "post_content" div */
 img {
 	width: 80%;

@@ -9,48 +9,57 @@
 
 	<body>
 
-		<div class = "header"> 
-			<ul>
-				<li><a href = "{% url 'homepage' %}" >| Home </a></li>
-				<li><a href = "{% url 'about' %}" >| About </a></li>
-				<li><a href = "{% url 'projects_page' %}" >| Projects </a></li>
-				<li><a href = "{% url 'gallery_page' %}" >| Art </a></li>
-				<li><a href = "{% url 'links_page' %}" >| Links </a></li>
-			</ul>
-		</div> 
+		<div id = "container">
+			<div class = "header"> 
+				<ul>
+					<li><a href = "{% url 'homepage' %}" >| Home </a></li>
+					<li><a href = "{% url 'about' %}" >| About </a></li>
+					<li><a href = "{% url 'projects_page' %}" >| Projects </a></li>
+					<li><a href = "{% url 'gallery_page' %}" >| Art </a></li>
+					<li><a href = "{% url 'links_page' %}" >| Links </a></li>
+				</ul>
+			</div> 
 
-		<div class = "post_container">
+			<div class = "post_container">
 
-			<!-- deal with post text --> 
-			{% for post in posts %}
-				<div>
-					<!-- post title and date published -->
-					<h1><a href = " " class = "post_titleinfo"> {{ post.title }}</a>
-						<span class = "date">
-							<span class = "date_posted">| Posted:
-							</span> {{ post.published_date }}
-						</span>
-					</h1>
+				<!-- deal with post text --> 
+				{% for post in posts %}
+					<div>
+						<!-- post title and date published -->
+						<h1><a href = " " class = "post_titleinfo"> {{ post.title }}</a>
+							<span class = "date">
+								<span class = "date_posted">| Posted:
+								</span> {{ post.published_date }}
+							</span>
+						</h1>
 
-					<!-- post text --> 
-					<div class = "post_content"> {{ post.text|linebreaksbr }}
+						<!-- post text --> 
+						<div class = "post_content"> {{ post.text|linebreaksbr }}
 
-						<!-- post image (optional) --> 
-						{% for post_image in post_images %}
-							{% if post_image.post == post %}
-								<a href = "{{post_image.image.url}}" class = "image_link">
-									<img src = "{{post_image.image.url}}" />
-								</a>
-							{% endif %}
-						{% endfor %}
+							<!-- post image (optional) --> 
+							{% for post_image in post_images %}
+								{% if post_image.post == post %}
+									<a href = "{{post_image.image.url}}" class = "image_link">
+										<img src = "{{post_image.image.url}}" />
+									</a>
+								{% endif %}
+							{% endfor %}
 
+						</div>
+
+						<hr> <!-- horizontal rule (break between posts) -->
 					</div>
+				{% endfor %}
 
-					<hr> <!-- horizontal rule (break between posts) -->
-				</div>
-			{% endfor %}
+			</div>
 
-		</div>
+		</div>	
+
+		<div id = "footer"> 
+			<p id = "footer_element"> 
+				Built completely in Python web framework Django  | © asitwala 2016 
+			</p>
+		</div> 
 
 	</body>
 

@@ -5,6 +5,7 @@ body {
 	background: #3b0d00 url(../images/site_projects.jpg);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	margin: 0;
 	padding: 0;
     -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
@@ -71,3 +72,73 @@ li a:hover {
 	text-decoration: none;
 	color: rgba(172, 55, 221, 0.85); /* purple */
 }
+
+/* reference: http://www.cssstickyfooter.com/using-sticky-footer-code.html
+   to make a sticky footer */
+
+#container {
+	min-height: 100%;
+}
+
+#footer {
+	float: right; 
+	margin-right: 2%;
+	padding: 2%;
+	position: relative;
+	height: 2.5vw;
+	clear: both;
+	padding-left: 3%;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1.25vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+
+.project_info {
+	background-color: rgba(255, 255, 255, 0.05);
+	width: 67.5%;
+	float: right;
+	padding: 2%;
+	margin: 2%;
+	overflow: auto;
+	padding-bottom:10px;
+}
+
+.project_info img {
+	width: 80%;
+	padding: 2%;
+	margin: 2%;
+	margin-left: auto; 
+	margin-right: auto;
+	display: block;
+	background-color: rgba(0, 0, 0, 0.25);
+	border-radius: 0.5em;
+}
+
+.project_info h1 {
+	font-family: inherit, 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 3.5vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	text-align: center; 
+}
+
+.project_info h6 {
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1.5vw;
+	color: rgba(197, 7, 170, 1); /* magenta */ 
+	text-align: center;
+}
+
+.project_info .project_text {
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100; 
+	font-size: 1.5vw;
+	color: rgba(172, 55, 221, 0.85);
+}
+
+
+
+

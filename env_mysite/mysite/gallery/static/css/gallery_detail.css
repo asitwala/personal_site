@@ -78,6 +78,29 @@ li a:hover {
 	color: rgba(172, 55, 221, 0.85); /* purple */
 }
 
+#container {
+	min-height: 100%;
+}
+
+#footer {
+	width: 20%;
+	padding: 2%;
+	margin-left: 2%;
+	position: relative;
+	clear: both;
+	float: right;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */	
+}
+
+@media screen and (max-height: 360px){
+	#footer {
+		opacity: 0; 
+	}
+}
+
 #back_link a {
 	text-decoration: none; 
 	color: rgba(197, 7, 170, 0.85);
@@ -91,6 +114,7 @@ li a:hover {
 }
 
 .main_content {
+	position: relative;
 	width: 100%;
 	margin-top: 5%;
 	margin-left: 4%;
@@ -116,7 +140,6 @@ li a:hover {
 .image_content {
 	width: 85%;
 	position: relative;
-	background-color: black;
 }
 
 .actual_image {

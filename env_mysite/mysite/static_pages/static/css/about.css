@@ -75,6 +75,34 @@ li a:hover {
 	color: rgba(172, 55, 221, 0.85); /* purple */
 }
 
+#footer {
+	opacity: 85%;
+	position: relative;
+	clear: both;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
+@media screen and (max-width: 640px){
+	#footer {
+		opacity: 0; 
+	}
+}
+
+@media screen and (max-height: 360px){
+	#footer {
+		opacity: 0; 
+	}
+}
+
+#footer_element {
+	position: fixed;
+	top: 95%;
+	left: 68.5%;
+}
+
 
 body p {
 	margin: 0; 

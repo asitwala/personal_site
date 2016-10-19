@@ -10,45 +10,55 @@
 
 
 	<body>
-		
-		<div class = "header">
-			<ul>
-				<li><a href = "{% url 'homepage' %}">| Home </a></li>
-				<li><a href = "{% url 'about' %}" >| About </a></li>
-				<li><a href = "{% url 'projects_page' %}">| Projects </a></li>
-				<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
-				<li><a href = "{% url 'links_page' %}" >| Links </a></li>
-			</ul>
-		</div>
-
-		<div class = "main_content">
-
-			<p id = "back_link">
-				<a href = "{% url 'gallery_page' %}">
-				 < Go back to Art Gallery
-				 </a> 
-			</p>
-
-			<div class = "painting_titleinfo">
-				<h1>{{ painting.title }} 
-					<span class = "date">
-						<span id = "posted">| Posted: </span>
-						{{ painting.published_date }}
-					</span>
-				</h1>
+		<div id = "container">
+			<div class = "header">
+				<ul>
+					<li><a href = "{% url 'homepage' %}">| Home </a></li>
+					<li><a href = "{% url 'about' %}" >| About </a></li>
+					<li><a href = "{% url 'projects_page' %}">| Projects </a></li>
+					<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
+					<li><a href = "{% url 'links_page' %}" >| Links </a></li>
+				</ul>
 			</div>
 
-			<div class = "image_content">
-				<a href = "{{ painting.image.url }}">
-					<img src = "{{ painting.image.url }}" class = "actual_image" alt = "{{painting.title}}"/>
-				</a>
+			<div class = "main_content">
 
-				<div class = "painting_text">
-					<p>{{ painting.text }}</p> 
+				<p id = "back_link">
+					<a href = "{% url 'gallery_page' %}">
+					 < Go back to Art Gallery
+					 </a> 
+				</p>
+
+				<div class = "painting_titleinfo">
+					<h1>{{ painting.title }} 
+						<span class = "date">
+							<span id = "posted">| Posted: </span>
+							{{ painting.published_date }}
+						</span>
+					</h1>
 				</div>
-			</div>
 
+				<div class = "image_content">
+					<a href = "{{ painting.image.url }}">
+						<img src = "{{ painting.image.url }}" class = "actual_image" alt = "{{painting.title}}"/>
+					</a>
+
+					<div class = "painting_text">
+						<p>{{ painting.text }}</p> 
+					</div>
+
+					
+
+				</div>
+
+			</div>
 		</div>
+
+		<div id = "footer"> 
+			<p id = "footer_element"> 
+				Built completely in Python web framework Django  | © asitwala 2016 
+			</p>
+		</div> 
 
 	</body>
 

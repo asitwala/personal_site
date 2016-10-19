@@ -77,6 +77,23 @@ li a:hover {
 	color: rgba(172, 55, 221, 0.85); /* purple */
 }
 
+#container {
+	min-height: 100%;
+}
+
+#footer {
+	float: left;
+	margin-right: 2%;
+	padding: 2%;
+	opacity: 85%;
+	position: relative;
+	clear: both;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}
+
 
 .main_content {
 	width: 72.5vw;

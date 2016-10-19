@@ -3,22 +3,78 @@
 <html>
 
 	<head>
+		<link rel = "stylesheet" href = "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel = "stylesheet" href = "{% static 'css/projects.css' %}">
 		<title>Projects</title>
 	</head>
 
 
 	<body>
+		<div id = "container">
+			<div class = "header"> 
+				<ul>
+					<li><a href = "{% url 'homepage' %}" >| Home </a></li>
+					<li><a href = "{% url 'about' %}" >| About </a></li>
+					<li><a href = "{% url 'gallery_page' %}" >| Art </a></li>
+					<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
+					<li><a href = "{% url 'links_page' %}" >| Links </a></li>
+				</ul>
+			</div> 
 
-		<div class = "header"> 
-			<ul>
-				<li><a href = "{% url 'homepage' %}" >| Home </a></li>
-				<li><a href = "{% url 'about' %}" >| About </a></li>
-				<li><a href = "{% url 'gallery_page' %}" >| Art </a></li>
-				<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
-				<li><a href = "{% url 'links_page' %}" >| Links </a></li>
-			</ul>
-		<div> 
+			<div class = "project_info"> 
+				{% for project in projects %}
+
+					<h1> {{ project.title }} </h1>
+
+					{% if project.image_at_top %}
+
+						{% for project_image in project_images %}
+							{% if project_image.project == project %}
+							<img src = "{{ project_image.image.url }}" alt = "{{ project.title }}"/>
+							{% endif %}
+						{% endfor %}
+
+						<h6> Organization: {{ project.organization }} </h6>
+						<h6> Team: {{ project.team }} </h6>
+
+						{% if project.link != 'empty' %}
+							<h6>Check It Out!<a href = "{{ project.link }}" alt = "{{ project.title }}"> {{ project.link }}</a> 
+							</h6>
+						{% endif %}
+
+						<p class = "project_text"> {{ project.text }} </p>
+
+					{% else %}
+
+						<h6> Organization: {{ project.organization }} </h6>
+						<h6> Team: {{ project.team }} </h6>
+
+						{% if project.link != 'empty' %}
+							<h6>Check It Out!<a href = "{{ project.link }}" alt = "{{ project.title }}"> {{ project.link }}</a> 
+							</h6>
+						{% endif %}
+
+						<p class = "project_text"> {{ project.text }} </p>
+
+						{% for project_image in project_images %}
+							{% if project_image.project == project %}
+								<img src = "{{ project_image.image.url }}" alt = "{{ project.title }}"/>
+							{% endif %}
+						{% endfor %}
+
+					{% endif %}
+
+				{% endfor %}
+
+			</div> 
+		</div>
+
+
+		<div id = "footer"> 
+			<p id = "footer_element"> 
+				Built completely in Python web framework Django  | © asitwala 2016 
+			</p>
+		</div> 
 
 	</body>
 
