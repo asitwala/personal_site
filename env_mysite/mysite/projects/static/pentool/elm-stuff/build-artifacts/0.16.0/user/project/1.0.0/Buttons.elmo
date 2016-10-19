@@ -1,0 +1,45 @@
+Elm.Buttons = Elm.Buttons || {};
+Elm.Buttons.make = function (_elm) {
+   "use strict";
+   _elm.Buttons = _elm.Buttons || {};
+   if (_elm.Buttons.values) return _elm.Buttons.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Graphics$Input = Elm.Graphics.Input.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Window = Elm.Window.make(_elm);
+   var _op = {};
+   var upstate = F2(function (e,i) {    var _p0 = e;if (_p0.ctor === "Clear") {    return 0;} else {    return i + 1;}});
+   var initState = 0;
+   var Clear = {ctor: "Clear"};
+   var buttonMailbox = $Signal.mailbox(Clear);
+   var stateOverTime = A3($Signal.foldp,upstate,initState,buttonMailbox.signal);
+   var clearButton = A2($Graphics$Input.button,A2($Signal.message,buttonMailbox.address,Clear),"Clear");
+   var Inc = {ctor: "Inc"};
+   var incButton = A2($Graphics$Input.button,A2($Signal.message,buttonMailbox.address,Inc),"Increment");
+   var view = F2(function (i,_p1) {
+      var _p2 = _p1;
+      return A2($Html.div,
+      _U.list([]),
+      _U.list([A2($Html.div,
+      _U.list([]),
+      _U.list([$Html.text("Counter: "),$Html.text($Basics.toString(i)),$Html.fromElement(incButton),$Html.fromElement(clearButton)]))]));
+   });
+   var main = A3($Signal.map2,view,stateOverTime,$Window.dimensions);
+   return _elm.Buttons.values = {_op: _op
+                                ,Inc: Inc
+                                ,Clear: Clear
+                                ,initState: initState
+                                ,upstate: upstate
+                                ,buttonMailbox: buttonMailbox
+                                ,incButton: incButton
+                                ,clearButton: clearButton
+                                ,stateOverTime: stateOverTime
+                                ,view: view
+                                ,main: main};
+};

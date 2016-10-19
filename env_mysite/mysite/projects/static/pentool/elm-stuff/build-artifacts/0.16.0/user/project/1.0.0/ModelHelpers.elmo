@@ -1,0 +1,66 @@
+Elm.ModelHelpers = Elm.ModelHelpers || {};
+Elm.ModelHelpers.make = function (_elm) {
+   "use strict";
+   _elm.ModelHelpers = _elm.ModelHelpers || {};
+   if (_elm.ModelHelpers.values) return _elm.ModelHelpers.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var fromResult = function (a) {
+      var _p0 = a;
+      if (_p0.ctor === "Ok") {
+            return _p0._0;
+         } else {
+            return _U.crashCase("ModelHelpers",{start: {line: 52,column: 5},end: {line: 54,column: 42}},_p0)("fromResult");
+         }
+   };
+   var fromJust = function (mx) {
+      var _p2 = mx;
+      if (_p2.ctor === "Nothing") {
+            return _U.crashCase("ModelHelpers",{start: {line: 45,column: 5},end: {line: 47,column: 20}},_p2)("fromJust: Input is Nothing");
+         } else {
+            return _p2._0;
+         }
+   };
+   var getListElement = F2(function (pos,lst) {
+      getListElement: while (true) {
+         var _p4 = lst;
+         if (_p4.ctor === "[]") {
+               return _U.crashCase("ModelHelpers",{start: {line: 35,column: 5},end: {line: 41,column: 46}},_p4)("getListElement: List is empty");
+            } else {
+               if (_U.eq(pos,0)) return _p4._0; else {
+                     var _v3 = pos - 1,_v4 = _p4._1;
+                     pos = _v3;
+                     lst = _v4;
+                     continue getListElement;
+                  }
+            }
+      }
+   });
+   var getHead = function (lst) {
+      var _p6 = lst;
+      if (_p6.ctor === "[]") {
+            return _U.crashCase("ModelHelpers",{start: {line: 29,column: 5},end: {line: 31,column: 19}},_p6)("getHead: List is empty");
+         } else {
+            return _p6._0;
+         }
+   };
+   var getReflection = F2(function (p1,p2) {
+      var y_dst = $Basics.snd(p1) - $Basics.snd(p2);
+      var x_dst = $Basics.fst(p1) - $Basics.fst(p2);
+      return {ctor: "_Tuple2",_0: $Basics.fst(p1) + x_dst,_1: $Basics.snd(p1) + y_dst};
+   });
+   var CtrlPoint = F2(function (a,b) {    return {top: a,bottom: b};});
+   return _elm.ModelHelpers.values = {_op: _op
+                                     ,CtrlPoint: CtrlPoint
+                                     ,getReflection: getReflection
+                                     ,getHead: getHead
+                                     ,getListElement: getListElement
+                                     ,fromJust: fromJust
+                                     ,fromResult: fromResult};
+};

@@ -1,0 +1,66 @@
+Elm.ViewHelpers = Elm.ViewHelpers || {};
+Elm.ViewHelpers.make = function (_elm) {
+   "use strict";
+   _elm.ViewHelpers = _elm.ViewHelpers || {};
+   if (_elm.ViewHelpers.values) return _elm.ViewHelpers.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $Html$Attributes = Elm.Html.Attributes.make(_elm),
+   $Html$Events = Elm.Html.Events.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var iconStyle = $Html$Attributes.style(_U.list([{ctor: "_Tuple2",_0: "display",_1: "flex"}
+                                                  ,{ctor: "_Tuple2",_0: "flex-direction",_1: "row"}
+                                                  ,{ctor: "_Tuple2",_0: "flex-wrap",_1: "wrap"}
+                                                  ,{ctor: "_Tuple2",_0: "justify-content",_1: "space-around"}]));
+   var icon = function (name) {
+      return A2($Html.img,
+      _U.list([$Html$Attributes.src(name)
+              ,$Html$Attributes.style(_U.list([{ctor: "_Tuple2",_0: "width",_1: "2.25em"}
+                                              ,{ctor: "_Tuple2",_0: "height",_1: "2em"}
+                                              ,{ctor: "_Tuple2",_0: "margin-top",_1: "-0.5em"}
+                                              ,{ctor: "_Tuple2",_0: "margin-bottom",_1: "-0.5em"}]))]),
+      _U.list([]));
+   };
+   var inputBox = F4(function (address,val,ne,action) {
+      return A2($Html.input,
+      _U.list([$Html$Attributes.type$("text")
+              ,$Html$Attributes.value(val)
+              ,$Html$Attributes.name(ne)
+              ,A3($Html$Events.on,"input",$Html$Events.targetValue,function (_p0) {    return A2($Signal.message,address,action(_p0));})]),
+      _U.list([]));
+   });
+   var slider = F5(function (low,high,address,val,action) {
+      return A2($Html.input,
+      _U.list([$Html$Attributes.type$("range")
+              ,$Html$Attributes.min(low)
+              ,$Html$Attributes.max(high)
+              ,$Html$Attributes.value(val)
+              ,A3($Html$Events.on,"input",$Html$Events.targetValue,function (_p1) {    return A2($Signal.message,address,action(_p1));})]),
+      _U.list([]));
+   });
+   var checkbox = F3(function (address,isChecked,action) {
+      return A2($Html.input,
+      _U.list([$Html$Attributes.type$("checkbox")
+              ,$Html$Attributes.checked(isChecked)
+              ,A3($Html$Events.on,"change",$Html$Events.targetChecked,function (_p2) {    return A2($Signal.message,address,action(_p2));})]),
+      _U.list([]));
+   });
+   var mkbutton = F3(function (address,val,action) {
+      return A2($Html.input,_U.list([$Html$Attributes.type$("button"),$Html$Attributes.value(val),A2($Html$Events.onClick,address,action)]),_U.list([]));
+   });
+   var CtrlPoint = F2(function (a,b) {    return {top: a,bottom: b};});
+   return _elm.ViewHelpers.values = {_op: _op
+                                    ,CtrlPoint: CtrlPoint
+                                    ,mkbutton: mkbutton
+                                    ,checkbox: checkbox
+                                    ,slider: slider
+                                    ,inputBox: inputBox
+                                    ,icon: icon
+                                    ,iconStyle: iconStyle};
+};

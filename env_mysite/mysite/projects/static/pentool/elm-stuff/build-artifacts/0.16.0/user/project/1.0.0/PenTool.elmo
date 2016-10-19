@@ -1,0 +1,559 @@
+Elm.PenTool = Elm.PenTool || {};
+Elm.PenTool.make = function (_elm) {
+   "use strict";
+   _elm.PenTool = _elm.PenTool || {};
+   if (_elm.PenTool.values) return _elm.PenTool.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $DrawingHelpers = Elm.DrawingHelpers.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $Html$Attributes = Elm.Html.Attributes.make(_elm),
+   $Html$Events = Elm.Html.Events.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $ModelHelpers = Elm.ModelHelpers.make(_elm),
+   $Mouse = Elm.Mouse.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $String = Elm.String.make(_elm),
+   $Svg = Elm.Svg.make(_elm),
+   $Svg$Attributes = Elm.Svg.Attributes.make(_elm),
+   $ViewHelpers = Elm.ViewHelpers.make(_elm),
+   $Window = Elm.Window.make(_elm);
+   var _op = {};
+   var initHandleColor = A5($DrawingHelpers.changeColor,"222","95","0","1.0","100");
+   var initPointColor = A5($DrawingHelpers.changeColor,"0","0","0","1.0","100");
+   var initPathColor = A5($DrawingHelpers.changeColor,"67","2","70","1.0","100");
+   var initCanvasColor = A5($DrawingHelpers.changeColor,"255","255","255","1.0","100");
+   var Finish = {ctor: "Finish"};
+   var Undo = {ctor: "Undo"};
+   var ChangePenOption = function (a) {    return {ctor: "ChangePenOption",_0: a};};
+   var ChangePointStroke = function (a) {    return {ctor: "ChangePointStroke",_0: a};};
+   var ChangePathStroke = function (a) {    return {ctor: "ChangePathStroke",_0: a};};
+   var ChangeHandleColor = F2(function (a,b) {    return {ctor: "ChangeHandleColor",_0: a,_1: b};});
+   var ChangePointColor = F2(function (a,b) {    return {ctor: "ChangePointColor",_0: a,_1: b};});
+   var ChangePathColor = F2(function (a,b) {    return {ctor: "ChangePathColor",_0: a,_1: b};});
+   var ChangeCanvasColor = F2(function (a,b) {    return {ctor: "ChangeCanvasColor",_0: a,_1: b};});
+   var ShowPractice = function (a) {    return {ctor: "ShowPractice",_0: a};};
+   var ShowPoints = function (a) {    return {ctor: "ShowPoints",_0: a};};
+   var ShowHandles = function (a) {    return {ctor: "ShowHandles",_0: a};};
+   var MouseUp = F2(function (a,b) {    return {ctor: "MouseUp",_0: a,_1: b};});
+   var MouseMove = F2(function (a,b) {    return {ctor: "MouseMove",_0: a,_1: b};});
+   var MouseDown = F2(function (a,b) {    return {ctor: "MouseDown",_0: a,_1: b};});
+   var Clear = {ctor: "Clear"};
+   var actionMailbox = $Signal.mailbox(Clear);
+   var State = function (a) {
+      return function (b) {
+         return function (c) {
+            return function (d) {
+               return function (e) {
+                  return function (f) {
+                     return function (g) {
+                        return function (h) {
+                           return function (i) {
+                              return function (j) {
+                                 return function (k) {
+                                    return {points: a
+                                           ,paths: b
+                                           ,allPaths: c
+                                           ,controlPoints: d
+                                           ,mouseState: e
+                                           ,mouseAction: f
+                                           ,currentPoint: g
+                                           ,lastPoint: h
+                                           ,ctrlCurrentPoint: i
+                                           ,ctrlLastPoint: j
+                                           ,displays: k};
+                                 };
+                              };
+                           };
+                        };
+                     };
+                  };
+               };
+            };
+         };
+      };
+   };
+   var Stopped = {ctor: "Stopped"};
+   var Moving = {ctor: "Moving"};
+   var Up = {ctor: "Up"};
+   var Down = {ctor: "Down"};
+   var upstate = F2(function (e,i) {
+      var _p0 = e;
+      switch (_p0.ctor)
+      {case "Clear": return _U.update(i,
+           {points: _U.list([])
+           ,paths: _U.list([])
+           ,allPaths: _U.list([])
+           ,controlPoints: _U.list([])
+           ,mouseState: Up
+           ,mouseAction: Stopped
+           ,currentPoint: $Maybe.Nothing
+           ,lastPoint: $Maybe.Nothing
+           ,ctrlCurrentPoint: $Maybe.Nothing
+           ,ctrlLastPoint: $Maybe.Nothing});
+         case "MouseDown": var _p2 = _p0._1;
+           var _p1 = _p0._0;
+           return _U.eq(_p1,Down) ? _U.update(i,
+           {points: A2($List._op["::"],_p2,i.points)
+           ,mouseState: _p1
+           ,mouseAction: Stopped
+           ,paths: i.paths
+           ,controlPoints: i.controlPoints
+           ,currentPoint: $Maybe.Just(_p2)
+           ,lastPoint: i.currentPoint
+           ,ctrlCurrentPoint: $Maybe.Nothing
+           ,ctrlLastPoint: i.ctrlCurrentPoint
+           ,displays: i.displays}) : _U.update(i,{mouseState: _p1,mouseAction: Stopped});
+         case "MouseMove": return _U.update(i,{mouseAction: _p0._0});
+         case "MouseUp": var _p4 = _p0._0;
+           var _p3 = _p0._1;
+           return _U.eq(i.mouseState,Down) && _U.eq(i.mouseAction,Moving) ? _U.update(i,
+           {points: i.points
+           ,mouseState: _p4
+           ,mouseAction: Stopped
+           ,paths: A4($DrawingHelpers.drawPaths,
+           i.displays.pathStroke,
+           i.displays.pathColor,
+           A2($List._op["::"],{top: A2($ModelHelpers.getReflection,$ModelHelpers.fromJust(i.currentPoint),_p3),bottom: _p3},i.controlPoints),
+           i.points)
+           ,controlPoints: A2($List._op["::"],{top: A2($ModelHelpers.getReflection,$ModelHelpers.fromJust(i.currentPoint),_p3),bottom: _p3},i.controlPoints)
+           ,currentPoint: i.currentPoint
+           ,lastPoint: i.lastPoint
+           ,ctrlCurrentPoint: $Maybe.Just({top: A2($ModelHelpers.getReflection,$ModelHelpers.fromJust(i.currentPoint),_p3),bottom: _p3})
+           ,ctrlLastPoint: i.ctrlCurrentPoint
+           ,displays: i.displays}) : _U.eq(i.mouseState,Down) && _U.eq(i.mouseAction,Stopped) ? _U.update(i,
+           {points: i.points
+           ,mouseState: _p4
+           ,mouseAction: Stopped
+           ,paths: A4($DrawingHelpers.drawPaths,i.displays.pathStroke,i.displays.pathColor,A2($List._op["::"],{top: _p3,bottom: _p3},i.controlPoints),i.points)
+           ,controlPoints: A2($List._op["::"],{top: _p3,bottom: _p3},i.controlPoints)
+           ,currentPoint: i.currentPoint
+           ,lastPoint: i.lastPoint
+           ,ctrlCurrentPoint: $Maybe.Just({top: _p3,bottom: _p3})
+           ,ctrlLastPoint: i.ctrlLastPoint
+           ,displays: i.displays}) : _U.update(i,{mouseState: _p4,mouseAction: Stopped});
+         case "ShowHandles": var d = i.displays;
+           var $new = _U.update(d,{showAllHandles: _p0._0});
+           return _U.update(i,{displays: $new});
+         case "ShowPoints": var d = i.displays;
+           var $new = _U.update(d,{showAllPoints: _p0._0});
+           return _U.update(i,{displays: $new});
+         case "ShowPractice": var d = i.displays;
+           var $new = _U.update(d,{showPractice: _p0._0});
+           return _U.update(i,{displays: $new});
+         case "ChangeCanvasColor": var d1 = i.displays;
+           var helper = F3(function (d,t,v) {
+              return _U.eq(t,"red") ? _U.update(d1,{canvasColor: A5($DrawingHelpers.changeColor,v,d.green,d.blue,d.opacity,d.opacity_slider)}) : _U.eq(t,
+              "green") ? _U.update(d1,{canvasColor: A5($DrawingHelpers.changeColor,d.red,v,d.blue,d.opacity,d.opacity_slider)}) : _U.eq(t,
+              "blue") ? _U.update(d1,{canvasColor: A5($DrawingHelpers.changeColor,d.red,d.green,v,d.opacity,d.opacity_slider)}) : _U.update(d1,
+              {canvasColor: A5($DrawingHelpers.changeColor,d.red,d.green,d.blue,$Basics.toString($ModelHelpers.fromResult($String.toFloat(v)) / 100),v)});
+           });
+           var d = i.displays.canvasColor;
+           return _U.update(i,{displays: A3(helper,d,_p0._0,_p0._1)});
+         case "ChangePathColor": var _p6 = _p0._1;
+           var _p5 = _p0._0;
+           var colorOpt = F3(function (d,str,val) {
+              return _U.eq(str,"red") ? A5($DrawingHelpers.changeColor,val,d.green,d.blue,d.opacity,d.opacity_slider) : _U.eq(str,
+              "green") ? A5($DrawingHelpers.changeColor,d.red,val,d.blue,d.opacity,d.opacity_slider) : _U.eq(str,"blue") ? A5($DrawingHelpers.changeColor,
+              d.red,
+              d.green,
+              val,
+              d.opacity,
+              d.opacity_slider) : A5($DrawingHelpers.changeColor,
+              d.red,
+              d.green,
+              d.blue,
+              $Basics.toString($ModelHelpers.fromResult($String.toFloat(val)) / 100),
+              val);
+           });
+           var d1 = i.displays;
+           var helper = F3(function (d,str,val) {    return _U.update(d1,{pathColor: A3(colorOpt,d,str,val)});});
+           var dis = i.displays.pathColor;
+           return _U.update(i,
+           {paths: A4($DrawingHelpers.drawPaths,i.displays.pathStroke,A3(colorOpt,dis,_p5,_p6),i.controlPoints,i.points),displays: A3(helper,dis,_p5,_p6)});
+         case "ChangePointColor": var d1 = i.displays;
+           var helper = F3(function (d,t,v) {
+              return _U.eq(t,"red") ? _U.update(d1,{pointColor: A5($DrawingHelpers.changeColor,v,d.green,d.blue,d.opacity,d.opacity_slider)}) : _U.eq(t,
+              "green") ? _U.update(d1,{pointColor: A5($DrawingHelpers.changeColor,d.red,v,d.blue,d.opacity,d.opacity_slider)}) : _U.eq(t,"blue") ? _U.update(d1,
+              {pointColor: A5($DrawingHelpers.changeColor,d.red,d.green,v,d.opacity,d.opacity_slider)}) : _U.update(d1,
+              {pointColor: A5($DrawingHelpers.changeColor,d.red,d.green,d.blue,$Basics.toString($ModelHelpers.fromResult($String.toFloat(v)) / 100),v)});
+           });
+           var d = i.displays.pointColor;
+           return _U.update(i,{displays: A3(helper,d,_p0._0,_p0._1)});
+         case "ChangeHandleColor": var d1 = i.displays;
+           var helper = F3(function (d,t,v) {
+              return _U.eq(t,"red") ? _U.update(d1,{handleColor: A5($DrawingHelpers.changeColor,v,d.green,d.blue,d.opacity,d.opacity_slider)}) : _U.eq(t,
+              "green") ? _U.update(d1,{handleColor: A5($DrawingHelpers.changeColor,d.red,v,d.blue,d.opacity,d.opacity_slider)}) : _U.eq(t,
+              "blue") ? _U.update(d1,{handleColor: A5($DrawingHelpers.changeColor,d.red,d.green,v,d.opacity,d.opacity_slider)}) : _U.update(d1,
+              {handleColor: A5($DrawingHelpers.changeColor,d.red,d.green,d.blue,$Basics.toString($ModelHelpers.fromResult($String.toFloat(v)) / 100),v)});
+           });
+           var d = i.displays.handleColor;
+           return _U.update(i,{displays: A3(helper,d,_p0._0,_p0._1)});
+         case "ChangePathStroke": var _p7 = _p0._0;
+           var d = i.displays;
+           var $new = _U.update(d,{pathStroke: _p7});
+           return _U.update(i,{paths: A4($DrawingHelpers.drawPaths,_p7,i.displays.pathColor,i.controlPoints,i.points),displays: $new});
+         case "ChangePointStroke": var d = i.displays;
+           var $new = _U.update(d,{pointStroke: _p0._0});
+           return _U.update(i,{displays: $new});
+         case "ChangePenOption": var d = i.displays;
+           var $new = _U.update(d,{penOption: _p0._0});
+           return _U.update(i,{displays: $new});
+         case "Undo": var _p8 = i.points;
+           if (_p8.ctor === "[]") {
+                 return i;
+              } else {
+                 if (_p8._1.ctor === "[]") {
+                       return _U.update(i,
+                       {points: _U.list([])
+                       ,paths: _U.list([])
+                       ,mouseState: Up
+                       ,mouseAction: Stopped
+                       ,controlPoints: _U.list([])
+                       ,currentPoint: $Maybe.Nothing
+                       ,lastPoint: $Maybe.Nothing
+                       ,ctrlCurrentPoint: $Maybe.Nothing
+                       ,ctrlLastPoint: $Maybe.Nothing});
+                    } else {
+                       if (_p8._1._1.ctor === "[]") {
+                             return _U.update(i,
+                             {points: A2($List._op["::"],_p8._1._0,_U.list([]))
+                             ,paths: A4($DrawingHelpers.drawPaths,
+                             i.displays.pathStroke,
+                             i.displays.pathColor,
+                             A2($List.drop,1,i.controlPoints),
+                             A2($List.drop,1,i.points))
+                             ,mouseState: Up
+                             ,mouseAction: Stopped
+                             ,controlPoints: A2($List.drop,1,i.controlPoints)
+                             ,currentPoint: i.lastPoint
+                             ,lastPoint: $Maybe.Nothing
+                             ,ctrlCurrentPoint: i.ctrlLastPoint
+                             ,ctrlLastPoint: $Maybe.Nothing});
+                          } else {
+                             return _U.update(i,
+                             {points: A2($List.drop,1,i.points)
+                             ,paths: A4($DrawingHelpers.drawPaths,
+                             i.displays.pathStroke,
+                             i.displays.pathColor,
+                             A2($List.drop,1,i.controlPoints),
+                             A2($List.drop,1,i.points))
+                             ,mouseState: Up
+                             ,mouseAction: Stopped
+                             ,controlPoints: A2($List.drop,1,i.controlPoints)
+                             ,currentPoint: i.lastPoint
+                             ,lastPoint: $Maybe.Just(A2($ModelHelpers.getListElement,2,i.points))
+                             ,ctrlCurrentPoint: i.ctrlLastPoint
+                             ,ctrlLastPoint: $Maybe.Just(A2($ModelHelpers.getListElement,2,i.controlPoints))});
+                          }
+                    }
+              }
+         default: return _U.update(i,
+           {points: _U.list([])
+           ,paths: _U.list([])
+           ,allPaths: A2($List._op["::"],i.paths,i.allPaths)
+           ,controlPoints: _U.list([])
+           ,mouseState: Up
+           ,mouseAction: Stopped
+           ,currentPoint: $Maybe.Nothing
+           ,lastPoint: $Maybe.Nothing
+           ,ctrlCurrentPoint: $Maybe.Nothing
+           ,ctrlLastPoint: $Maybe.Nothing});}
+   });
+   var Display = function (a) {
+      return function (b) {
+         return function (c) {
+            return function (d) {
+               return function (e) {
+                  return function (f) {
+                     return function (g) {
+                        return function (h) {
+                           return function (i) {
+                              return function (j) {
+                                 return {penOption: a
+                                        ,showAllHandles: b
+                                        ,showAllPoints: c
+                                        ,canvasColor: d
+                                        ,pathColor: e
+                                        ,pointColor: f
+                                        ,handleColor: g
+                                        ,pathStroke: h
+                                        ,pointStroke: i
+                                        ,showPractice: j};
+                              };
+                           };
+                        };
+                     };
+                  };
+               };
+            };
+         };
+      };
+   };
+   var Color = F5(function (a,b,c,d,e) {    return {red: a,green: b,blue: c,opacity: d,opacity_slider: e};});
+   var Points = {ctor: "Points"};
+   var Handle = {ctor: "Handle"};
+   var Path = {ctor: "Path"};
+   var initState = {points: _U.list([])
+                   ,paths: _U.list([])
+                   ,allPaths: _U.list([])
+                   ,controlPoints: _U.list([])
+                   ,mouseState: Up
+                   ,mouseAction: Stopped
+                   ,currentPoint: $Maybe.Nothing
+                   ,lastPoint: $Maybe.Nothing
+                   ,ctrlCurrentPoint: $Maybe.Nothing
+                   ,ctrlLastPoint: $Maybe.Nothing
+                   ,displays: {penOption: Path
+                              ,showAllHandles: false
+                              ,showAllPoints: true
+                              ,canvasColor: initCanvasColor
+                              ,pathColor: initPathColor
+                              ,pointColor: initPointColor
+                              ,handleColor: initHandleColor
+                              ,pathStroke: "1"
+                              ,pointStroke: "3"
+                              ,showPractice: false}};
+   var stateOverTime = A3($Signal.foldp,upstate,initState,actionMailbox.signal);
+   var view = F3(function (i,_p10,_p9) {
+      var _p11 = _p10;
+      var _p22 = _p11._0;
+      var _p21 = _p11._1;
+      var _p12 = _p9;
+      var _p20 = _p12._1;
+      var _p19 = _p12._0;
+      var refresh_p = A2($Html.p,
+      _U.list([$Svg$Attributes.id("refresh")]),
+      _U.list([$Html.text("Please refresh the page when you resize the window for proper functionality. | See footer for credits.")]));
+      var event_3 = A2($Html$Events.onMouseUp,actionMailbox.address,A2(MouseUp,Up,{ctor: "_Tuple2",_0: _p19,_1: _p20}));
+      var event_2 = A2($Html$Events.onMouseMove,actionMailbox.address,A2(MouseMove,Moving,{ctor: "_Tuple2",_0: _p19,_1: _p20}));
+      var event_1 = A2($Html$Events.onMouseDown,actionMailbox.address,A2(MouseDown,Down,{ctor: "_Tuple2",_0: _p19,_1: _p20}));
+      var renderHandles = _U.eq(i.displays.showAllHandles,true) ? A2($DrawingHelpers.drawHandles,i.displays.handleColor,i.controlPoints) : _U.list([]);
+      var renderLPHandle = function () {
+         var _p13 = i.ctrlLastPoint;
+         if (_p13.ctor === "Nothing") {
+               return _U.list([]);
+            } else {
+               var unwrap = $ModelHelpers.fromJust(i.ctrlLastPoint);
+               return A3($DrawingHelpers.drawHandle,i.displays.handleColor,unwrap.top,unwrap.bottom);
+            }
+      }();
+      var renderCPHandle = function () {
+         var _p14 = i.ctrlCurrentPoint;
+         if (_p14.ctor === "Nothing") {
+               return _U.eq(i.mouseState,Down) && _U.eq(i.mouseAction,Moving) ? A3($DrawingHelpers.drawHandle,
+               i.displays.handleColor,
+               {ctor: "_Tuple2",_0: _p19,_1: _p20},
+               A2($ModelHelpers.getReflection,$ModelHelpers.fromJust(i.currentPoint),{ctor: "_Tuple2",_0: _p19,_1: _p20})) : _U.list([]);
+            } else {
+               var unwrap = $ModelHelpers.fromJust(i.ctrlCurrentPoint);
+               return A3($DrawingHelpers.drawHandle,i.displays.handleColor,unwrap.top,unwrap.bottom);
+            }
+      }();
+      var renderCurve = function () {
+         var _p15 = {ctor: "_Tuple2",_0: i.ctrlLastPoint,_1: i.ctrlCurrentPoint};
+         if (_p15._0.ctor === "Nothing") {
+               return _U.list([]);
+            } else {
+               if (_p15._1.ctor === "Nothing") {
+                     var currPt = $ModelHelpers.fromJust(i.currentPoint);
+                     var lastPt = $ModelHelpers.fromJust(i.lastPoint);
+                     var cp1 = $ModelHelpers.fromJust(i.ctrlLastPoint);
+                     return _U.eq(i.mouseState,Down) && _U.eq(i.mouseAction,Moving) ? A4($DrawingHelpers.drawCurveInit,
+                     i.displays.pathStroke,
+                     i.displays.pathColor,
+                     {ctor: "_Tuple2"
+                     ,_0: cp1
+                     ,_1: {top: A2($ModelHelpers.getReflection,currPt,{ctor: "_Tuple2",_0: _p19,_1: _p20}),bottom: {ctor: "_Tuple2",_0: _p19,_1: _p20}}},
+                     {ctor: "_Tuple2",_0: lastPt,_1: currPt}) : _U.list([]);
+                  } else {
+                     return _U.list([]);
+                  }
+            }
+      }();
+      var renderPoints = _U.eq(i.displays.showAllPoints,true) ? A3($DrawingHelpers.drawPoints,
+      i.displays.pointColor,
+      i.displays.pointStroke,
+      i.points) : _U.list([]);
+      var renderPic = _U.eq(i.displays.showPractice,true) ? _U.list([A2($Svg.image,
+      _U.list([$Svg$Attributes.height("100%"),$Svg$Attributes.width("100%"),$Svg$Attributes.xlinkHref("exercise.png")]),
+      _U.list([]))]) : _U.list([]);
+      var imgCanvasBlue = $ViewHelpers.icon("canvasBlue.png");
+      var imgCanvasGreen = $ViewHelpers.icon("canvasGreen.png");
+      var imgCanvasRed = $ViewHelpers.icon("canvasRed.png");
+      var imgPenToolBlue = $ViewHelpers.icon("penToolBlue.png");
+      var imgPenToolGreen = $ViewHelpers.icon("penToolGreen.png");
+      var imgPenToolRed = $ViewHelpers.icon("penToolRed.png");
+      var buttonClear = A3($ViewHelpers.mkbutton,actionMailbox.address,"CLEAR CANVAS",Clear);
+      var buttonFinish = A3($ViewHelpers.mkbutton,actionMailbox.address,"END",Finish);
+      var buttonUndo = A3($ViewHelpers.mkbutton,actionMailbox.address,"UNDO (current path)",Undo);
+      var buttonHandle = A3($ViewHelpers.mkbutton,actionMailbox.address,"HANDLES",ChangePenOption(Handle));
+      var buttonPoints = A3($ViewHelpers.mkbutton,actionMailbox.address,"POINTS",ChangePenOption(Points));
+      var buttonPath = A3($ViewHelpers.mkbutton,actionMailbox.address,"PATHS",ChangePenOption(Path));
+      var sliderHandleOpacity = A5($ViewHelpers.slider,"0","100",actionMailbox.address,i.displays.handleColor.opacity_slider,ChangeHandleColor("opacity"));
+      var sliderHandleBlue = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.handleColor.blue,ChangeHandleColor("blue"));
+      var sliderHandleGreen = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.handleColor.green,ChangeHandleColor("green"));
+      var sliderHandleRed = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.handleColor.red,ChangeHandleColor("red"));
+      var sliderPathStroke = A5($ViewHelpers.slider,"0","20",actionMailbox.address,i.displays.pathStroke,ChangePathStroke);
+      var sliderPathOpacity = A5($ViewHelpers.slider,"0","100",actionMailbox.address,i.displays.pathColor.opacity_slider,ChangePathColor("opacity"));
+      var sliderPathBlue = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.pathColor.blue,ChangePathColor("blue"));
+      var sliderPathGreen = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.pathColor.green,ChangePathColor("green"));
+      var sliderPathRed = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.pathColor.red,ChangePathColor("red"));
+      var sliderPointStroke = A5($ViewHelpers.slider,"0","20",actionMailbox.address,i.displays.pointStroke,ChangePointStroke);
+      var sliderPointOpacity = A5($ViewHelpers.slider,"0","100",actionMailbox.address,i.displays.pointColor.opacity_slider,ChangePointColor("opacity"));
+      var sliderPointBlue = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.pointColor.blue,ChangePointColor("blue"));
+      var sliderPointGreen = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.pointColor.green,ChangePointColor("green"));
+      var sliderPointRed = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.pointColor.red,ChangePointColor("red"));
+      var penchoice_div = function () {
+         var _p16 = i.displays.penOption;
+         switch (_p16.ctor)
+         {case "Path": return A2($Html.div,
+              _U.list([$Svg$Attributes.$class("pathGUI")]),
+              _U.list([$Html.text("Path Opacity ")
+                      ,A2($Html.span,_U.list([]),_U.list([$Html.text("|")]))
+                      ,sliderPathOpacity
+                      ,A2($Html.p,_U.list([$ViewHelpers.iconStyle]),_U.list([imgPenToolRed,imgPenToolGreen,imgPenToolBlue]))
+                      ,A2($Html.p,_U.list([]),_U.list([sliderPathRed,sliderPathGreen,sliderPathBlue]))
+                      ,A2($Html.p,
+                      _U.list([]),
+                      _U.list([$Html.text("Stroke Weight "),A2($Html.span,_U.list([]),_U.list([$Html.text("|")])),sliderPathStroke]))]));
+            case "Points": return A2($Html.div,
+              _U.list([$Svg$Attributes.$class("pointsGUI")]),
+              _U.list([$Html.text("Point Opacity ")
+                      ,A2($Html.span,_U.list([]),_U.list([$Html.text("|")]))
+                      ,sliderPointOpacity
+                      ,A2($Html.p,_U.list([$ViewHelpers.iconStyle]),_U.list([imgPenToolRed,imgPenToolGreen,imgPenToolBlue]))
+                      ,A2($Html.p,_U.list([]),_U.list([sliderPointRed,sliderPointGreen,sliderPointBlue]))
+                      ,A2($Html.p,_U.list([]),_U.list([$Html.text("Point Size "),A2($Html.span,_U.list([]),_U.list([$Html.text("|")])),sliderPointStroke]))]));
+            default: return A2($Html.div,
+              _U.list([$Svg$Attributes.$class("handleGUI")]),
+              _U.list([$Html.text("Handle Opacity ")
+                      ,A2($Html.span,_U.list([]),_U.list([$Html.text("|")]))
+                      ,sliderHandleOpacity
+                      ,A2($Html.p,_U.list([$ViewHelpers.iconStyle]),_U.list([imgPenToolRed,imgPenToolGreen,imgPenToolBlue]))
+                      ,A2($Html.p,_U.list([]),_U.list([sliderHandleRed,sliderHandleGreen,sliderHandleBlue]))
+                      ,A2($Html.p,_U.list([]),_U.list([$Html.text("Drag the mouse to have handles appear.")]))]));}
+      }();
+      var pen_div = A2($Html.div,
+      _U.list([$Svg$Attributes.$class("penGUI")]),
+      _U.list([A2($Html.h2,_U.list([]),_U.list([$Html.text("Pen "),buttonPath,buttonPoints,buttonHandle])),penchoice_div]));
+      var sliderCanvasOpacity = A5($ViewHelpers.slider,"0","100",actionMailbox.address,i.displays.canvasColor.opacity_slider,ChangeCanvasColor("opacity"));
+      var sliderCanvasBlue = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.canvasColor.blue,ChangeCanvasColor("blue"));
+      var sliderCanvasGreen = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.canvasColor.green,ChangeCanvasColor("green"));
+      var sliderCanvasRed = A5($ViewHelpers.slider,"0","255",actionMailbox.address,i.displays.canvasColor.red,ChangeCanvasColor("red"));
+      var checkBoxPractice = A3($ViewHelpers.checkbox,actionMailbox.address,i.displays.showPractice,ShowPractice);
+      var checkBoxPoints = A3($ViewHelpers.checkbox,actionMailbox.address,i.displays.showAllPoints,ShowPoints);
+      var checkBoxHandles = A3($ViewHelpers.checkbox,actionMailbox.address,i.displays.showAllHandles,ShowHandles);
+      var canvas_div = A2($Html.div,
+      _U.list([$Svg$Attributes.$class("canvasGUI")]),
+      _U.list([A2($Html.h2,_U.list([]),_U.list([$Html.text("Canvas "),buttonFinish,buttonUndo,buttonClear]))
+              ,$Html.text("Opacity  ")
+              ,A2($Html.span,_U.list([]),_U.list([$Html.text("|")]))
+              ,sliderCanvasOpacity
+              ,A2($Html.p,_U.list([$ViewHelpers.iconStyle]),_U.list([imgCanvasRed,imgCanvasGreen,imgCanvasBlue]))
+              ,A2($Html.p,_U.list([]),_U.list([sliderCanvasRed,sliderCanvasGreen,sliderCanvasBlue]))
+              ,A2($Html.p,
+              _U.list([]),
+              _U.list([$Html.text("Show All Handles  ")
+                      ,checkBoxHandles
+                      ,$Html.text("Show All Points  ")
+                      ,checkBoxPoints
+                      ,$Html.text("Show Exercise")
+                      ,checkBoxPractice]))]));
+      var ht_num = $Basics.round(0.7 * $Basics.toFloat(_p21));
+      var renderCanvas = A3($DrawingHelpers.drawRectangle,i.displays.canvasColor,_p22 - 2,ht_num - 2);
+      var renderExt = function () {
+         if (_U.cmp(_p20,ht_num) > 0) return _U.list([]); else {
+               var _p17 = i.mouseState;
+               if (_p17.ctor === "Up") {
+                     var _p18 = i.ctrlCurrentPoint;
+                     if (_p18.ctor === "Nothing") {
+                           return _U.list([]);
+                        } else {
+                           var unwrap = $ModelHelpers.fromJust(i.ctrlCurrentPoint);
+                           var bottomCtrlPt = unwrap.bottom;
+                           return A4($DrawingHelpers.drawPath,
+                           i.displays.pathStroke,
+                           i.displays.pathColor,
+                           {ctor: "_Tuple2",_0: $ModelHelpers.fromJust(i.currentPoint),_1: {ctor: "_Tuple2",_0: _p19,_1: _p20}},
+                           {ctor: "_Tuple2",_0: bottomCtrlPt,_1: {ctor: "_Tuple2",_0: _p19,_1: _p20}});
+                        }
+                  } else {
+                     return _U.list([]);
+                  }
+            }
+      }();
+      var renderObjects = A2($Basics._op["++"],
+      _U.list([renderCanvas]),
+      A2($Basics._op["++"],
+      renderPic,
+      A2($Basics._op["++"],
+      renderHandles,
+      A2($Basics._op["++"],
+      renderLPHandle,
+      A2($Basics._op["++"],
+      renderCPHandle,
+      A2($Basics._op["++"],
+      renderExt,
+      A2($Basics._op["++"],renderCurve,A2($Basics._op["++"],i.paths,A2($Basics._op["++"],$List.concat(i.allPaths),renderPoints)))))))));
+      var ht = $Basics.toString($Basics.round(0.7 * $Basics.toFloat(_p21)));
+      var wid = $Basics.toString(_p22);
+      var canvas_1 = $Svg.svg(_U.list([$Svg$Attributes.width(wid),$Svg$Attributes.height(ht),$Svg$Attributes.viewBox("0 0 w ht_num")]));
+      var renderDiv = function (event) {
+         return A2($Html.div,
+         event,
+         _U.list([canvas_1(renderObjects)
+                 ,refresh_p
+                 ,A2($Html.div,
+                 _U.list([$Html$Attributes.style(_U.list([{ctor: "_Tuple2",_0: "display",_1: "flex"}
+                                                         ,{ctor: "_Tuple2",_0: "flex-direction",_1: "row"}
+                                                         ,{ctor: "_Tuple2",_0: "flex-wrap",_1: "wrap"}
+                                                         ,{ctor: "_Tuple2",_0: "justify-content",_1: "space-around"}]))]),
+                 _U.list([canvas_div,pen_div]))]));
+      };
+      return _U.cmp(_p20,ht_num) > 0 ? renderDiv(_U.list([])) : renderDiv(_U.list([event_1,event_2,event_3]));
+   });
+   var main = A4($Signal.map3,view,stateOverTime,$Window.dimensions,$Mouse.position);
+   var CtrlPoint = F2(function (a,b) {    return {top: a,bottom: b};});
+   return _elm.PenTool.values = {_op: _op
+                                ,CtrlPoint: CtrlPoint
+                                ,Path: Path
+                                ,Handle: Handle
+                                ,Points: Points
+                                ,Color: Color
+                                ,Display: Display
+                                ,Down: Down
+                                ,Up: Up
+                                ,Moving: Moving
+                                ,Stopped: Stopped
+                                ,State: State
+                                ,Clear: Clear
+                                ,MouseDown: MouseDown
+                                ,MouseMove: MouseMove
+                                ,MouseUp: MouseUp
+                                ,ShowHandles: ShowHandles
+                                ,ShowPoints: ShowPoints
+                                ,ShowPractice: ShowPractice
+                                ,ChangeCanvasColor: ChangeCanvasColor
+                                ,ChangePathColor: ChangePathColor
+                                ,ChangePointColor: ChangePointColor
+                                ,ChangeHandleColor: ChangeHandleColor
+                                ,ChangePathStroke: ChangePathStroke
+                                ,ChangePointStroke: ChangePointStroke
+                                ,ChangePenOption: ChangePenOption
+                                ,Undo: Undo
+                                ,Finish: Finish
+                                ,initCanvasColor: initCanvasColor
+                                ,initPathColor: initPathColor
+                                ,initPointColor: initPointColor
+                                ,initHandleColor: initHandleColor
+                                ,initState: initState
+                                ,upstate: upstate
+                                ,actionMailbox: actionMailbox
+                                ,stateOverTime: stateOverTime
+                                ,view: view
+                                ,main: main};
+};

@@ -1,0 +1,118 @@
+Elm.DrawingHelpers = Elm.DrawingHelpers || {};
+Elm.DrawingHelpers.make = function (_elm) {
+   "use strict";
+   _elm.DrawingHelpers = _elm.DrawingHelpers || {};
+   if (_elm.DrawingHelpers.values) return _elm.DrawingHelpers.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $String = Elm.String.make(_elm),
+   $Svg = Elm.Svg.make(_elm),
+   $Svg$Attributes = Elm.Svg.Attributes.make(_elm);
+   var _op = {};
+   var takeTwo = function (lst) {
+      var _p0 = lst;
+      if (_p0.ctor === "[]") {
+            return _U.list([]);
+         } else {
+            if (_p0._1.ctor === "[]") {
+                  return _U.list([]);
+               } else {
+                  var _p1 = _p0._1._0;
+                  return A2($List._op["::"],{ctor: "_Tuple2",_0: _p0._0,_1: _p1},takeTwo(A2($List._op["::"],_p1,_p0._1._1)));
+               }
+         }
+   };
+   var toSVGColor = F4(function (r,g,b,o) {    return A2($String.join,",",_U.list([A2($Basics._op["++"],"rgba(",r),g,b,A2($Basics._op["++"],o,")")]));});
+   var drawRectangle = F3(function (c,w,h) {
+      return A2($Svg.rect,
+      _U.list([$Svg$Attributes.fill(A4(toSVGColor,c.red,c.green,c.blue,c.opacity))
+              ,$Svg$Attributes.stroke("black")
+              ,$Svg$Attributes.strokeWidth("2")
+              ,$Svg$Attributes.rx("5")
+              ,$Svg$Attributes.ry("5")
+              ,$Svg$Attributes.x("1")
+              ,$Svg$Attributes.y("1")
+              ,$Svg$Attributes.width($Basics.toString(w))
+              ,$Svg$Attributes.height($Basics.toString(h))]),
+      _U.list([]));
+   });
+   var drawHandle = F3(function (c,t1,t2) {
+      var col = A4(toSVGColor,c.red,c.green,c.blue,c.opacity);
+      var y_2 = $Basics.toString($Basics.snd(t2));
+      var y_1 = $Basics.toString($Basics.snd(t1));
+      var x_2 = $Basics.toString($Basics.fst(t2));
+      var x_1 = $Basics.toString($Basics.fst(t1));
+      return _U.list([A2($Svg.circle,_U.list([$Svg$Attributes.cx(x_1),$Svg$Attributes.cy(y_1),$Svg$Attributes.r("3"),$Svg$Attributes.fill(col)]),_U.list([]))
+                     ,A2($Svg.circle,_U.list([$Svg$Attributes.cx(x_2),$Svg$Attributes.cy(y_2),$Svg$Attributes.r("3"),$Svg$Attributes.fill(col)]),_U.list([]))
+                     ,A2($Svg.line,
+                     _U.list([$Svg$Attributes.x1(x_1)
+                             ,$Svg$Attributes.y1(y_1)
+                             ,$Svg$Attributes.x2(x_2)
+                             ,$Svg$Attributes.y2(y_2)
+                             ,$Svg$Attributes.stroke(col)
+                             ,$Svg$Attributes.strokeWidth("1")]),
+                     _U.list([]))]);
+   });
+   var drawHandles = F2(function (c,lst) {
+      var bottom_list = A2($List.map,function (_) {    return _.bottom;},lst);
+      var top_list = A2($List.map,function (_) {    return _.top;},lst);
+      return $List.concat(A3($List.map2,F2(function (t1,t2) {    return A3(drawHandle,c,t1,t2);}),top_list,bottom_list));
+   });
+   var drawPoint = F3(function (c,size,t) {
+      var y = $Basics.toString($Basics.snd(t));
+      var x = $Basics.toString($Basics.fst(t));
+      return A2($Svg.circle,
+      _U.list([$Svg$Attributes.cx(x),$Svg$Attributes.cy(y),$Svg$Attributes.r(size),$Svg$Attributes.fill(A4(toSVGColor,c.red,c.green,c.blue,c.opacity))]),
+      _U.list([]));
+   });
+   var drawPoints = F3(function (c,size,lst) {    return A2($List.map,function (t) {    return A3(drawPoint,c,size,t);},lst);});
+   var drawPath = F4(function (w,c,t1,t2) {
+      var ctrl_2_y = $Basics.toString($Basics.snd($Basics.snd(t2)));
+      var ctrl_2_x = $Basics.toString($Basics.fst($Basics.snd(t2)));
+      var ctrl_1_y = $Basics.toString($Basics.snd($Basics.fst(t2)));
+      var ctrl_1_x = $Basics.toString($Basics.fst($Basics.fst(t2)));
+      var pt_2_y = $Basics.toString($Basics.snd($Basics.snd(t1)));
+      var pt_2_x = $Basics.toString($Basics.fst($Basics.snd(t1)));
+      var pt_1_y = $Basics.toString($Basics.snd($Basics.fst(t1)));
+      var pt_1_x = $Basics.toString($Basics.fst($Basics.fst(t1)));
+      var data = A2($String.join," ",_U.list(["M",pt_1_x,pt_1_y,"C",ctrl_1_x,ctrl_1_y,ctrl_2_x,ctrl_2_y,pt_2_x,pt_2_y]));
+      return _U.list([A2($Svg.path,
+      _U.list([$Svg$Attributes.d(data)
+              ,$Svg$Attributes.fill("none")
+              ,$Svg$Attributes.stroke(A4(toSVGColor,c.red,c.green,c.blue,c.opacity))
+              ,$Svg$Attributes.strokeWidth(w)]),
+      _U.list([]))]);
+   });
+   var drawCurveInit = F4(function (w,c,_p3,_p2) {
+      var _p4 = _p3;
+      var _p5 = _p2;
+      return A4(drawPath,w,c,{ctor: "_Tuple2",_0: _p5._0,_1: _p5._1},{ctor: "_Tuple2",_0: _p4._0.bottom,_1: _p4._1.top});
+   });
+   var drawPaths = F4(function (w,c,clst,plst) {
+      var cpoint_lst = takeTwo($List.reverse(clst));
+      var point_lst = takeTwo($List.reverse(plst));
+      return $List.concat(A3($List.map2,F2(function (t1,t2) {    return A4(drawCurveInit,w,c,t1,t2);}),cpoint_lst,point_lst));
+   });
+   var changeColor = F5(function (r,g,b,o,os) {    return {red: r,green: g,blue: b,opacity: o,opacity_slider: os};});
+   var CtrlPoint = F2(function (a,b) {    return {top: a,bottom: b};});
+   var Color = F5(function (a,b,c,d,e) {    return {red: a,green: b,blue: c,opacity: d,opacity_slider: e};});
+   return _elm.DrawingHelpers.values = {_op: _op
+                                       ,Color: Color
+                                       ,CtrlPoint: CtrlPoint
+                                       ,changeColor: changeColor
+                                       ,toSVGColor: toSVGColor
+                                       ,drawRectangle: drawRectangle
+                                       ,drawHandle: drawHandle
+                                       ,drawHandles: drawHandles
+                                       ,drawPoint: drawPoint
+                                       ,drawPoints: drawPoints
+                                       ,drawPath: drawPath
+                                       ,drawCurveInit: drawCurveInit
+                                       ,takeTwo: takeTwo
+                                       ,drawPaths: drawPaths};
+};

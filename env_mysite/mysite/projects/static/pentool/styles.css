@@ -1,0 +1,102 @@
+body {
+	background-color: #313131;
+	margin: auto;
+	position: relative;
+	height: 100%;
+}
+
+div {
+	font-family: "Open Sans", Helvetica, sans-serif;
+	margin: auto;
+
+}
+
+
+/* reference: http://www.cssstickyfooter.com/using-sticky-footer-code.html
+   to make a sticky footer */
+
+#container {
+	min-height: 100%;
+	margin-top: 1em;
+
+}
+
+#main {
+	overflow: auto;
+	padding-bottom:10px;
+}
+
+#credits {
+	position: relative;
+	height: 20px;
+	clear: both;
+	padding-left: 4em;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 0.75em;
+}
+
+.canvasGUI {
+	color: white;
+	font-size: 0.8em;
+
+}
+
+.penGUI {
+	color: white; 
+	font-size: 0.8em;
+}
+
+
+a:visited {
+	color: #4fdc7a;
+}
+
+a:hover {
+	color: #7A007D;
+}
+
+a{
+	text-decoration: none;
+}
+
+input {
+	margin-right: 2em;
+	margin-top: 1em;
+}
+
+input[type='button'] {
+	text-decoration: none;
+	background-color: white;
+	border-style: solid;
+	border-width: 0.25em; 
+	border-color: rgba(255, 255, 255, 0.4);
+	border-radius: 0.5em;
+}
+
+input[type='button']:hover {
+	text-decoration: none;
+	background-color: rgba(255, 255, 255, 0.4);
+
+}
+
+span {
+	font-size: 1.5em;
+}
+
+
+#refresh {
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 0.6em;
+	text-align: center;
+	margin-bottom: -0.5em;
+	margin-top: -0.05em;
+}
+
+
+
+h2 {
+	font-family: "Rock Salt", Helvetica, sans-serif; 
+	letter-spacing: 0.1em;
+	margin-bottom: -0.5em;
+}

@@ -1,0 +1,164 @@
+Elm.Trial = Elm.Trial || {};
+Elm.Trial.make = function (_elm) {
+   "use strict";
+   _elm.Trial = _elm.Trial || {};
+   if (_elm.Trial.values) return _elm.Trial.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $String = Elm.String.make(_elm),
+   $Svg = Elm.Svg.make(_elm),
+   $Svg$Attributes = Elm.Svg.Attributes.make(_elm);
+   var _op = {};
+   var view_2 = function (t) {    return A2($Html.section,_U.list([]),_U.list([A2($Html.div,_U.list([]),_U.list([$Html.text($Basics.toString(t))]))]));};
+   var drawText = F2(function (t1,t2) {
+      var ctrl_2_y = $Basics.toString($Basics.snd($Basics.snd(t2)));
+      var ctrl_2_x = $Basics.toString($Basics.fst($Basics.snd(t2)));
+      var ctrl_1_y = $Basics.toString($Basics.snd($Basics.fst(t2)));
+      var ctrl_1_x = $Basics.toString($Basics.fst($Basics.fst(t2)));
+      var pt_2_y = $Basics.toString($Basics.snd($Basics.snd(t1)));
+      var pt_2_x = $Basics.toString($Basics.fst($Basics.snd(t1)));
+      var pt_1_y = $Basics.toString($Basics.snd($Basics.fst(t1)));
+      var pt_1_x = $Basics.toString($Basics.fst($Basics.fst(t1)));
+      var data = A2($String.join," ",_U.list(["M",pt_1_x,pt_1_y,"C",ctrl_1_x,ctrl_1_y,ctrl_2_x,ctrl_2_y,pt_2_x,pt_2_y]));
+      return A2($Html.div,_U.list([]),_U.list([$Html.text(data)]));
+   });
+   var drawPath = F2(function (t1,t2) {
+      var ctrl_2_y = $Basics.toString($Basics.snd($Basics.snd(t2)));
+      var ctrl_2_x = $Basics.toString($Basics.fst($Basics.snd(t2)));
+      var ctrl_1_y = $Basics.toString($Basics.snd($Basics.fst(t2)));
+      var ctrl_1_x = $Basics.toString($Basics.fst($Basics.fst(t2)));
+      var pt_2_y = $Basics.toString($Basics.snd($Basics.snd(t1)));
+      var pt_2_x = $Basics.toString($Basics.fst($Basics.snd(t1)));
+      var pt_1_y = $Basics.toString($Basics.snd($Basics.fst(t1)));
+      var pt_1_x = $Basics.toString($Basics.fst($Basics.fst(t1)));
+      var data = A2($String.join," ",_U.list(["M",pt_1_x,pt_1_y,"C",ctrl_1_x,ctrl_1_y,ctrl_2_x,ctrl_2_y,pt_2_x,pt_2_y]));
+      return A2($Svg.svg,
+      _U.list([$Svg$Attributes.width("800"),$Svg$Attributes.height("800"),$Svg$Attributes.viewBox("0 0 800 800")]),
+      _U.list([A2($Svg.path,
+      _U.list([$Svg$Attributes.d(data),$Svg$Attributes.fill("none"),$Svg$Attributes.stroke("black"),$Svg$Attributes.strokeWidth("2")]),
+      _U.list([]))]));
+   });
+   var main = $Signal.constant(A2(drawPath,
+   {ctor: "_Tuple2",_0: {ctor: "_Tuple2",_0: 100,_1: 100},_1: {ctor: "_Tuple2",_0: 400,_1: 400}},
+   {ctor: "_Tuple2",_0: {ctor: "_Tuple2",_0: 100,_1: 150},_1: {ctor: "_Tuple2",_0: 200,_1: 200}}));
+   var drawPoint = function (t) {
+      var y = $Basics.toString($Basics.snd(t));
+      var x = $Basics.toString($Basics.fst(t));
+      return A2($Svg.circle,_U.list([$Svg$Attributes.cx(x),$Svg$Attributes.cy(y),$Svg$Attributes.r("3"),$Svg$Attributes.fill("blue")]),_U.list([]));
+   };
+   var view = F2(function (lst,_p0) {
+      var _p1 = _p0;
+      var _p3 = _p1._0;
+      var _p2 = _p1._1;
+      var drawRectangle = A2($Svg.rect,
+      _U.list([$Svg$Attributes.fill("none")
+              ,$Svg$Attributes.stroke("blue")
+              ,$Svg$Attributes.strokeWidth("2")
+              ,$Svg$Attributes.x("1")
+              ,$Svg$Attributes.y("1")
+              ,$Svg$Attributes.width($Basics.toString(_p3 - 2))
+              ,$Svg$Attributes.height($Basics.toString(_p2 - 2))]),
+      _U.list([]));
+      var ht = $Basics.toString(_p2);
+      var wid = $Basics.toString(_p3);
+      var canvas_1 = $Svg.svg(_U.list([$Svg$Attributes.width(wid),$Svg$Attributes.height(ht),$Svg$Attributes.viewBox("0 0 w h")]));
+      var drawPoints = function (lst) {    var point_list = A2($List.map,drawPoint,lst);return canvas_1(A2($List.append,point_list,_U.list([drawRectangle])));};
+      return A2($Html.section,_U.list([]),_U.list([A2($Html.div,_U.list([]),_U.list([drawPoints(lst)]))]));
+   });
+   var drawAnchor = F2(function (t1,t2) {
+      var y_2 = $Basics.toString($Basics.snd(t2));
+      var y_1 = $Basics.toString($Basics.snd(t1));
+      var x_2 = $Basics.toString($Basics.fst(t2));
+      var x_1 = $Basics.toString($Basics.fst(t1));
+      return A2($Svg.svg,
+      _U.list([$Svg$Attributes.width("800"),$Svg$Attributes.height("800"),$Svg$Attributes.viewBox("0 0 800 800")]),
+      _U.list([A2($Svg.line,
+              _U.list([$Svg$Attributes.x1(x_1)
+                      ,$Svg$Attributes.y1(y_1)
+                      ,$Svg$Attributes.x2(x_2)
+                      ,$Svg$Attributes.y2(y_2)
+                      ,$Svg$Attributes.stroke("orange")
+                      ,$Svg$Attributes.strokeWidth("1")]),
+              _U.list([]))
+              ,A2($Svg.circle,_U.list([$Svg$Attributes.cx(x_1),$Svg$Attributes.cy(y_1),$Svg$Attributes.r("3"),$Svg$Attributes.fill("orange")]),_U.list([]))
+              ,A2($Svg.circle,_U.list([$Svg$Attributes.cx(x_2),$Svg$Attributes.cy(y_2),$Svg$Attributes.r("3"),$Svg$Attributes.fill("orange")]),_U.list([]))]));
+   });
+   var drawLine = F2(function (t1,t2) {
+      var y_2 = $Basics.toString($Basics.snd(t2));
+      var y_1 = $Basics.toString($Basics.snd(t1));
+      var x_2 = $Basics.toString($Basics.fst(t2));
+      var x_1 = $Basics.toString($Basics.fst(t1));
+      return A2($Svg.line,
+      _U.list([$Svg$Attributes.x1(x_1)
+              ,$Svg$Attributes.y1(y_1)
+              ,$Svg$Attributes.x2(x_2)
+              ,$Svg$Attributes.y2(y_2)
+              ,$Svg$Attributes.stroke("orange")
+              ,$Svg$Attributes.strokeWidth("1")]),
+      _U.list([]));
+   });
+   var drawRectangle = A2($Svg.rect,
+   _U.list([$Svg$Attributes.fill("none")
+           ,$Svg$Attributes.stroke("blue")
+           ,$Svg$Attributes.strokeWidth("2")
+           ,$Svg$Attributes.x("1")
+           ,$Svg$Attributes.y("1")
+           ,$Svg$Attributes.width("798")
+           ,$Svg$Attributes.height("798")]),
+   _U.list([]));
+   var makePath = A2($Svg.svg,
+   _U.list([$Svg$Attributes.width("800"),$Svg$Attributes.height("800"),$Svg$Attributes.viewBox("0 0 800 800")]),
+   _U.list([A2($Svg.path,
+   _U.list([$Svg$Attributes.d("M 100 100 C 100 50 200 50 200 100 z ")
+           ,$Svg$Attributes.fill("none")
+           ,$Svg$Attributes.stroke("orange")
+           ,$Svg$Attributes.strokeWidth("2")]),
+   _U.list([]))]));
+   var makeRectangle = A2($Svg.svg,
+   _U.list([$Svg$Attributes.width("120"),$Svg$Attributes.height("120"),$Svg$Attributes.viewBox("0 0 120 120")]),
+   _U.list([A2($Svg.rect,
+   _U.list([$Svg$Attributes.fill("red")
+           ,$Svg$Attributes.stroke("black")
+           ,$Svg$Attributes.strokeWidth("2")
+           ,$Svg$Attributes.x("10")
+           ,$Svg$Attributes.y("10")
+           ,$Svg$Attributes.width("100")
+           ,$Svg$Attributes.height("100")
+           ,$Svg$Attributes.rx("10")
+           ,$Svg$Attributes.ry("10")]),
+   _U.list([]))]));
+   var canvas = $Svg.svg(_U.list([$Svg$Attributes.width("800"),$Svg$Attributes.height("800"),$Svg$Attributes.viewBox("0 0 800 800")]));
+   var drawPoints = function (lst) {    var point_list = A2($List.map,drawPoint,lst);return canvas(A2($List.append,point_list,_U.list([drawRectangle])));};
+   var update = F2(function (t,s) {    return A2($List._op["::"],t,s);});
+   var initState = _U.list([]);
+   var Curve = {ctor: "Curve"};
+   var Line = {ctor: "Line"};
+   var Point = {ctor: "Point"};
+   var Clear = {ctor: "Clear"};
+   return _elm.Trial.values = {_op: _op
+                              ,Clear: Clear
+                              ,Point: Point
+                              ,Line: Line
+                              ,Curve: Curve
+                              ,initState: initState
+                              ,update: update
+                              ,canvas: canvas
+                              ,makeRectangle: makeRectangle
+                              ,makePath: makePath
+                              ,drawRectangle: drawRectangle
+                              ,drawLine: drawLine
+                              ,drawAnchor: drawAnchor
+                              ,drawPoint: drawPoint
+                              ,drawPoints: drawPoints
+                              ,drawPath: drawPath
+                              ,drawText: drawText
+                              ,view: view
+                              ,view_2: view_2
+                              ,main: main};
+};

@@ -1,0 +1,149 @@
+
+The Pen Tool -- Report 
+
+A Walk-Through:
+---------------
+
+Please see "documentation.txt."
+
+
+Reflection on last progress report: 
+-----------------------------------
+
+From the last progress report, I mentioned the stretch goals of the project: 
+
+" Stretch Goals: 
+
+1. Establish an "Undo" Button
+2. Provide support for deleting "anchor" points
+3. Provide support for adding "anchor" points
+4. Provide special functionality (highlighting) when path is linked back to start point (thus establishing a closed path)
+5. Provide support for moving entire path (assuming it is either closed or finished) "
+
+
+I was able to establish an "Undo" button that deletes the last subpath from the current working path. It however, does not delete the paths that have already "ended." Based on my representation of all the drawn paths (a List of List Svg.Svg), it would not be optimal to delete path the current path, since it would mean traversing this List of Lists, which I already do to draw all the different paths. 
+
+I also assume that when the user presses "End," he/she would not want to edit that path any longer. However, this functionality may be one of the limitations of the program. 
+
+
+I was not able to provide support for deleting and adding anchor points -- I briefly thought about implementing deletion of points, but that would mean that I would have to draw all paths again, which could theoretically cause the program to slow down, although I am very impressed by Elm's event handling and rendering through Signals. 
+
+
+I think deletion would be more feasible to implement based on my state, as once the signal to delete a point is received, I would need to need to traverse my list of points and control points and delete the appropriate point and respective control point. 
+
+The hard part about deletion would be detection: detecting the mouse position on top of a previous point (or within a range of that point), highlighting that point, and clicking down on the point to delete it. 
+
+Adding a point would be more difficult as you'd need a way to access the path after "ending" it. To add a point, I would need to keep an active representation of all my paths, as opposed to the current working path. 
+
+
+I was also not able to provide support for moving the entire path -- I realize that would take some intense mouse computations and much more logic involving the representation of the program's state -- I would have to detect two different actions: 1. clicking down and starting a new path vs. 2. clicking down and moving the path. 
+
+I guess theoretically, I could have a different mode (say type mode = Drawing | Moving), and update based on a button that represents which mode the program is currently in. 
+
+However, I'm glad I was able to allow the user to draw more than one path and thus in a sense implement a very basic abstraction of "layers."
+
+
+Challenges:
+-----------
+
+Signalling: 
+
+The initial challenges I had with this project revolved around signalling. The program heavily relies on user input and appropriate event handling. Initially, I tried to work with Elm's primitive signals. I quickly realized that I couldn't handle multiple signals at the same time using primitive signalling functions like "merge", "mergeMany," or "sampleOn" because they often gave me an asynchronous representation of the canvas and the points, especially when I was trying to debug and used several "Html.text" components as "print" statements. 
+
+I looked that the TodoMVC example which used Elm-Html to see how signals were being treated. The example used mailboxes, so I decided to review mailboxes. Mailboxes definitely solved all of my initial issues. 
+
+
+References: 
+> https://github.com/evancz/elm-todomvc/blob/master/Todo.elm
+> https://www.classes.cs.uchicago.edu/archive/2016/winter/22300-1/lectures/Buttons/index.html
+
+
+Representation of State: 
+
+My state essentially represents the entire program. As I was programming, I realized that I was holding so much information in so many different variables. I don't think my representation of state is the most efficient or intelligent way to represent the Pen Tool. 
+
+I followed the TodoMVC's example and used a record to represent the state.
+
+My final representation of state: 
+
+type alias State = 
+    { points: List Point
+    , paths: List Svg.Svg
+    , allPaths: List (List Svg.Svg)
+    , controlPoints: List CtrlPoint
+    , mouseState: MouseState
+    , mouseAction: MouseAction
+    , currentPoint: Maybe Point
+    , lastPoint: Maybe Point
+    , ctrlCurrentPoint: Maybe CtrlPoint
+    , ctrlLastPoint: Maybe CtrlPoint
+    , displays: Display
+    }
+
+
+The most important parts are the points, paths, and control points (which help draw the smooth curves). The "displays" field deals with all changes and events on the interface below the canvas, like changing the color of the canvas, the points, paths, or handles. 
+
+The "currentPoint," "lastPoint," "ctrlCurrentPoint," and "ctrlLastPoint" are used when drawing the extending line to the mouse, the handles, and the curve between the last point and current point when the mouse is down and the user is dragging the handles. 
+
+
+Mouse State and Clicks: 
+
+I initially represented the Mouse State as a generic integer, and based on the different integer values, I would have certain events occur. However, with this representation, the program could not distinguish between previous clicks and current clicks(as stated in response to my question about the clicks on Piazza). Thus, often times, multiple handles would drawn on the same point. 
+
+The response on Piazza told me to break the Mouse state into "Up" and "Down" and to have another type called MouseAction that was either "Moving" or "Stopped." Representing the mouse state this way not only helped me implement the proper functionality but also made it easier to draw handles. I didn't need to have multiple pattern matching cases just dealing with events. 
+
+
+Ending Paths: 
+
+I initially wasn't sure how I would end paths. I was considering keyboard shortcuts similar to the actual Adobe Illustrator shortcuts for the Pen Tool. However, I realized that most of what I was I implementing relied on Mouse actions, and to add keyboard actions would require separate Keyboard actions. Thus, I created an "End" button to end the path. This implementation eliminated the need for me to deal with the first point of the path to close the path. This implementation of ending paths is a bit simplistic and not quite like that of Illustrator, but to implement Illustrator's "close path" and "end path" (Command + Shift + a) would require addtional components to the representation of the state. 
+
+
+
+Limitations of my implementation: 
+---------------------------------
+
+-> Cannot close path completely: For a user to end a path, he/she has to press the "End" button on the Canvas interface. Since there is no automatic close path feature, the user has to go back to the first point of the path and make sure the mouse is directly above the initial point. Often times, it is difficult to completely align the mouse with the first point, so the resulting path isn't exactly "closed."
+
+-> User has to navigate away from the canvas to end paths. I can see this feature being a bit annoying and not very intuitive to the user, who may want to press a key or perhaps double click to end the path. 
+
+-> No deletion/insertion of anchor points: this may be annoying to someone who wants to make a path where one side of an anchor point is curved and the other is straight. My implementation sidesteps this by having the user end the path when it is curved and start a new path at the end point and make sure the new path is straight. Again, due to the issue of not closing paths completely and not allowing the mouse to highlight the point your mouse is over, the resulting path may not be aligned correctly. 
+
+-> No support for filled in paths. Filled in paths would require me to keep track of the initial point of the path, so that each time a new subpath is added, the path would need to use the "closepath" attribute provided by SVG and close the path from the new point to the initial point and based on the points between the first point and the last point. Ideally, I would have liked to implement this feature if I had a bit more time. 
+
+
+-> No Highlighting: When you mouse over a point on a path in Illustrator, the path and point are highlighted. I was not able to even think about highlighting when I was implementing this project. 
+
+-> No Automatic "Rulers": When you press "Shift" in Illustrator while using the Pen Tool, the handles are essentially "locked" on an angle, so they don't rotate at all. 
+
+-> Not allowing the user to upload an image file and place it on the canvas "underneath" the points, paths, and handles. The image would serve as a reference, similar to placing a scanned image of your drawing and using the Pen Tool on top of it to create fonts, logos, etc. I researched ways to upload files to an Elm application, and most forums stated to use Ports and Javascript. Not having much Javascript experience outside of front-end rendering in React Native and not much time to finish the project, I decided against allowing users to upload files and instead included a "practice exercise" (credits are below) that is commonly used to teach users how to use the Pen Tool and deal with handles. 
+
+
+Packages, References, + Help:
+------------------------------ 
+
+I heavily used the "elm-html" and "elm-svg" libraries to implement the all the visuals. I specifically used the SVG package to draw the points, paths, and handles. I specifically used the Html package for event handling and for organizing components on the page. 
+
+Elm Packages: 
+
+> http://package.elm-lang.org/packages/evancz/elm-svg/2.0.1/Svg
+> http://package.elm-lang.org/packages/evancz/elm-html/4.0.2/
+
+
+Elm Help: 
+
+> http://elm-lang.org/guide/interop
+> http://elm-lang.org/examples/checkboxes
+
+Svg: 
+
+> https://www.w3.org/TR/SVG/shapes.html
+> https://www.w3.org/TR/SVG/paths
+
+
+Credits (for icons and exercise): 
+
+> http://simpleicon.com/pen_tool.html
+> http://design.tutsplus.com/tutorials/illustrators-pen-tool-the-comprehensive-guide--vector-141
+
+
+

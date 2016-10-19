@@ -1,0 +1,50 @@
+
+The Pen Tool -- Documentation 
+
+Components: 
+
+> Canvas -- where you can draw paths, which can be used to create vector icons, images, etc.
+
+> Pen: 
+
+	> Points -- these are essentially "Anchor points," which help you establish the flow of the path
+
+	> Paths -- smooth representations of outlines of shapes or straight or curved lines. The strength of paths lies in the fact that paths are vectors and thus can be scaled up to any size and won't appear to be pixelated.
+
+	> Handles -- this implementation of the Pen Tool uses cubic Bezier Curves, which have two control points (a bottom and a top). Handles represent these two control points, which are connected by a line. Paths between two points are typically drawn from the first point's bottom control point to the second point's top control point. If you simply click on the canvas and don't create any handles, then that point's control points are simply the point itself.
+
+
+Getting Started: 
+
+1. Click anywhere on the canvas to start a path. 
+2. Click and hold the mouse down to establish handles for a point (to give the point control points). 
+3. Move the mouse to see what the next subpath looks like.
+4. Click on another point and hold down to establish new handles and see how the subpath begins to curve. 
+5. Release the mouse when you are satisfied with the shape of the current subpath. 
+6. Under the "Canvas" interface, click "End" when you want to end your path. The extending line is drawn automatically as the mouse moves, but it will disappear once the mouse leaves the canvas -- thus do not worry about the extending line being drawn. 
+
+
+Features: 
+
+> End: End will end your current path at your last anchor point and allow you to begin drawing a new path (essentially on a "layer" above the current path). 
+
+> Undo: Undo will undo the last subpath drawn on the current working path. Once you have clicked "End," this path cannot be accessed again, and thus you cannot undo on this "finished" or "archived" path. Imagine that once you click "End," your path is placed on a layer than cannot be accessed again. 
+
+> Clear: Clear simply clears the canvas but keeps track of all your other preferences.
+
+> Show All Handles: This feature (default Unchecked) allows you to see all the handles of your current working path for guidance. 
+
+> Show All Points: This feature (default Checked) allows you to see all the anchor points of the current working path, which represent the flow of your path. To see what the resulting path looks like so far, you can turn this feature off. 
+
+> Show Exercise: An image of a Pen Tool Exercise (from http://design.tutsplus.com/tutorials/illustrators-pen-tool-the-comprehensive-guide--vector-141) will appear on the canvas. See if you can recreate all the paths. 
+
+> Canvas Opacity Slider: Change the opacity of the canvas so you can better see your points, paths, etc.
+
+> Canvas Red, Green, Blue Sliders: Change the color of the canvas.
+
+> Similar Opacity and Color Sliders for Paths, Points, and Handles: all changes will happen immediately and will only affect your current working path, not your previous "finished" paths. 
+
+> Stroke Weight Slider for Paths: Make the path appear thinner or thicker.
+
+> Point Size Slider for Points: Increase or decrease the size of the anchor points. 
+
