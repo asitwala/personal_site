@@ -6,3 +6,4 @@ gunicorn==19.6.0
 Pillow==3.4.1
 virtualenv==15.0.3
 whitenoise==3.2.2
+psycopg2==2.5.4
