@@ -1,13 +1,11 @@
-/* TRANSITIONS AND OPTIMIZATIONS ----------> */ 
-
 /* reference for transitions */ 
 /* http://stackoverflow.com/questions/11679567/using-css-for-fade-in-effect-on-page-load */ 
 
 body {
-	background:  #3b0d00 url(../images/site_gallery.jpg);
+	background:  #3b0d00 url(../images/site_links.jpg);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
+	background-attachment: fixed; 
 	margin: 0;
 	padding: 0;
     -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
@@ -46,8 +44,6 @@ body {
 }
 
 
-/* <---------- END TRANSITIONS AND OPTIMIZATIONS  */ 
-
 .header {
 	font-family: "Gill Sans", sans-serif;
 	font-weight: 100;
@@ -82,93 +78,56 @@ li a:hover {
 	min-height: 100%;
 }
 
-#footer {
-	width: 20%;
+.link_content {
+	width: 60%;
+	margin: 2%;
 	padding: 2%;
-	margin-left: 2%;
-	position: relative;
-	clear: both;
-	float: right;
-	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
-	font-size: 1vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */	
 }
 
-@media screen and (max-height: 360px){
-	#footer {
-		opacity: 0; 
-	}
-}
-
-#back_link a {
-	text-decoration: none; 
-	color: rgba(197, 7, 170, 0.85); /* magenta */
-	font-family: 'Gill Sans', sans-serif;
-	font-weight: 100;
-	font-size: 1.5vw;
+#back_link a{
+	font-family: "Gill Sans", sans-serif;
+	font-weight: 100; 
+	font-size: 1.5vw; 
+	color: rgba(197, 7, 170, 0.85); /* magenta */ 
 }
 
 #back_link a:hover {
+	text-decoration: none;
+	color: rgba(241, 169, 73, 0.85); 
+}
+
+.link_content h1 {
+	font-family: inherit, "Gill Sans", sans-serif;
+	font-weight: 100; 
+	font-size: 3.5vw; 
 	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
 }
 
-.main_content {
-	position: relative;
-	width: 100%;
-	margin-top: 5%;
-	margin-left: 4%;
-	font-family: inherit, sans-serif; 
+.link_content .link_desc {
+	font-family: inherit, "Gill Sans", sans-serif;
+	font-size: 1.5vw;
+	color: rgba(197, 7, 170, 0.85); /* magenta */ ;
 }
 
-.main_content h1 {
-	font-weight: 100;
-	font-size: 3.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
-}
-
-.date {
-	font-size: 1.25vw;
-	color: rgba(172, 55, 221, 1); /* purple */
-}
-
-#posted {
-	font-size: 1.25vw;
-	color: rgba(197, 7, 170, 1); /* magenta */
-}
-
-.image_content {
-	width: 85%;
-	position: relative;
-}
-
-.actual_image {
-	position: absolute;
-	float: left;
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	margin: 0.2%;
-	padding: 2%;
-	padding-right: 42.5%;
-	background-color: rgba(0, 0, 0, 0.2);
-	border-left-style: solid; 
-	border-left-width: 0.1vw;
-	border-color: rgba(241, 169, 73, 0.75);
-}
-
-.painting_text {
-	width: 35.5%;
-	float: left;
-	position: absolute;
-	margin: 2%;
-	padding: 2%;
-	left: 42.5%; /* 7.5% + img.width - img.padding-right */
+.link_content p a {
 	font-family: "Gill Sans", sans-serif;
-	font-weight: 100;
-	font-size: 1.45vw;
-	color: rgba(241, 169, 73, 0.85);
-	background-color: rgba(0, 0, 0, 0.1); 
+	color: rgba(172, 55, 221, 0.85); /* purple */ 
 }
 
+.link_content p a:hover {
+	color: rgba(241, 169, 73, 0.85); /* magenta */ 
+}
 
+#footer {
+	float: left;
+	margin-right: 2%;
+	padding: 2%;
+	opacity: 85%;
+	position: relative;
+	clear: both;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1vw;
+	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+}

@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<link rel = "stylesheet" href = "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel = "stylesheet" href = "{% static 'css/links_page.css' %}">
+		<link rel = "stylesheet" href = "{% static 'css/links_detail.css' %}">
 		<title>Links</title>
 	</head>
 
@@ -20,22 +20,29 @@
 				</ul>
 			</div>
 
-			<div id = "link_content">
+			<div class = "link_content">
 
-				<div id = "intro"> 
-					<h4> Click on a topic below to find links to sites that I have found helpful through the years. </h4>
+				<p id = "back_link"><a href = "{% url 'links_page' %}"> < Go back to all links </a></p>
 
-					<h4>I hope these sites will help you as well!</h4>
-				</div>
+				<h1>
+					{{ linkpost.title }}
+				</h1>
 
-				{% for linkpost in linkposts %}
-					<h3>
-						<a href = "{% url 'links_detail' pk=linkpost.pk %}">
-							{{ linkpost.title }}
-						</a>
-					</h3>
+				{% for link in links %}
+
+					{% if link.linkpost == linkpost %}
+						<p class = "link_desc"> {{ link.linkdesc }} 
+							<span> | </span> 
+							<a href = "{{ link.linksite }}">
+								{{ link.linksite }}
+							</a>
+
+					{% endif %}
+
 				{% endfor %}
+
 			</div>
+
 		</div>
 
 		<div id = "footer"> 

@@ -12,6 +12,7 @@ class Project(models.Model):
 	text = models.TextField()
 	link = models.CharField(max_length = 200, default = 'empty')
 	nickname = models.CharField(max_length = 100, default = 'empty')
+	published_date = models.DateTimeField(blank = True, null = True)
 
 	def publish(self): 
 		self.published_date = timezone.now()
