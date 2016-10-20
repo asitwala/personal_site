@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'projects',
     'gallery', 
     'links',
+    'storages',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -149,7 +150,6 @@ except ImportError:
 
 # for AWS S3 support
 # reference: http://agiliq.com/blog/2014/06/heroku-django-s3-for-serving-media-files/
-INSTALLED_APPS + ('storages',)
 
 AWS_QUERYSTRING_AUTH = False
 AWS_ACCESS_KEY_ID = os.environ['AKIAIJT24XHQEZPWEFUQ']
