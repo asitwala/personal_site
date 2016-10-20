@@ -1,1 +1,1 @@
-web: gunicorn mysite/mysite.wsgi
+web: gunicorn --pythonpath ./env_mysite/mysite/ mysite.wsgi
