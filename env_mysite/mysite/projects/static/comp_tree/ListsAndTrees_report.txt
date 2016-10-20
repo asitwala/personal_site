@@ -1,0 +1,64 @@
+TotalScore: 92
+
+---
+almostCompleteTrees
+Score: 0
+   almostCompleteTrees4 : 2.5 points : 1.5
+   almostCompleteTrees3 : 2.5 points : 1.5
+   almostCompleteTrees2 : 2.5 points : 1.5
+   almostCompleteTrees1 : 2.5 points : 1.5
+---
+---
+completeTrees
+Score: 20
+   completeTrees6 : 4 points : Pass
+   completeTrees5 : 4 points : Pass
+   completeTrees4 : 4 points : Pass
+   completeTrees3 : 4 points : Pass
+   completeTrees2 : 4 points : Pass
+---
+---
+balancedTrees
+Score: 20
+   H5 : 4 points : Pass
+   H4 : 4 points : Pass
+   H3 : 4 points : Pass
+   H1 : 4 points : Pass
+   LT.Empty : 4 points : Pass
+---
+---
+balancedTree
+Score: 16
+   H5 : 4 points : Pass
+   H4 : 4 points : Pass
+   H1 : 4 points : Pass
+   LT.Empty : 4 points : Pass
+---
+---
+fullTree
+Score: 7
+   H4 : 2 points : Pass
+   H3 : 2 points : Pass
+   Single : 2 points : Pass
+   LT.Empty : 1 points : Pass
+---
+---
+mem
+Score: 16
+   Absent : 2 points : Pass
+   Absent : 2 points : Pass
+   Present : 2 points : Pass
+   Present : 2 points : Pass
+   Present : 2 points : Pass
+   Present : 2 points : Pass
+   Present : 2 points : Pass
+   LT.Empty : 2 points : Pass
+---
+---
+suffixes
+Score: 7
+   [4,3,2,1] : 3 points : Pass
+   [1,2,3,4] : 3 points : Pass
+   [] : 1 points : Pass
+---
+

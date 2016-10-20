@@ -1,0 +1,190 @@
+Elm.ListsAndTrees = Elm.ListsAndTrees || {};
+Elm.ListsAndTrees.make = function (_elm) {
+   "use strict";
+   _elm.ListsAndTrees = _elm.ListsAndTrees || {};
+   if (_elm.ListsAndTrees.values) return _elm.ListsAndTrees.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var subsequences = function (xss) {
+      var _p0 = xss;
+      if (_p0.ctor === "[]") {
+            return _U.list([_U.list([])]);
+         } else {
+            return A3($List.foldr,
+            F2(function (a,b) {    return A2($List._op["::"],a,A2($List._op["::"],A2($List._op["::"],_p0._0,a),b));}),
+            _U.list([]),
+            subsequences(_p0._1));
+         }
+   };
+   var isMem = F2(function (x,t) {
+      var _p1 = t;
+      if (_p1.ctor === "Empty") {
+            return false;
+         } else {
+            return _U.eq(x,_p1._0) ? true : A2(isMem,x,_p1._1) || A2(isMem,x,_p1._2);
+         }
+   });
+   var mem = F2(function (x,t) {
+      mem: while (true) {
+         var _p2 = t;
+         if (_p2.ctor === "Empty") {
+               return false;
+            } else {
+               var _p3 = A2($Basics.compare,x,_p2._0);
+               switch (_p3.ctor)
+               {case "EQ": return true;
+                  case "LT": var _v4 = x,_v5 = _p2._1;
+                    x = _v4;
+                    t = _v5;
+                    continue mem;
+                  default: var _v6 = x,_v7 = _p2._2;
+                    x = _v6;
+                    t = _v7;
+                    continue mem;}
+            }
+      }
+   });
+   var Node = F3(function (a,b,c) {    return {ctor: "Node",_0: a,_1: b,_2: c};});
+   var mergeTrees = F3(function (x,left,right) {
+      var _p4 = left;
+      if (_p4.ctor === "[]") {
+            return _U.list([]);
+         } else {
+            return A2($Basics._op["++"],A2($List.map,A2(Node,x,_p4._0),right),A3(mergeTrees,x,_p4._1,right));
+         }
+   });
+   var Empty = {ctor: "Empty"};
+   var fullTree = F2(function (x,h) {
+      if (_U.cmp(h,0) < 0) return Empty; else {
+            var _p5 = h;
+            if (_p5 === 0) {
+                  return Empty;
+               } else {
+                  return A3(Node,x,A2(fullTree,x,h - 1),A2(fullTree,x,h - 1));
+               }
+         }
+   });
+   var create2 = F2(function (x,m) {
+      var helper = F2(function (x,m) {
+         var _p6 = m;
+         switch (_p6)
+         {case 0: return Empty;
+            case 1: return A3(Node,x,Empty,Empty);
+            default: return _U.eq(A2($Basics.rem,m,2),0) ? A3(Node,x,A2(helper,x,m / 2 | 0),A2(helper,x,(m - 1) / 2 | 0)) : A3(Node,
+              x,
+              A2(helper,x,(m - 1) / 2 | 0),
+              A2(helper,x,(m - 1) / 2 | 0));}
+      });
+      return {ctor: "_Tuple2",_0: A2(helper,x,m),_1: A2(helper,x,m + 1)};
+   });
+   var balancedTree = F2(function (x,m) {
+      var tree_tuple = A2(create2,x,(m - 1) / 2 | 0);
+      var first = $Basics.fst(tree_tuple);
+      var second = $Basics.snd(tree_tuple);
+      return _U.eq(m,0) ? Empty : _U.eq(A2($Basics.rem,m,2),0) ? A3(Node,x,second,first) : A3(Node,x,first,first);
+   });
+   var balancedTrees = F2(function (x,n) {
+      var _p7 = n;
+      if (_p7 === 0) {
+            return _U.list([Empty]);
+         } else {
+            var list_2 = A2(balancedTrees,x,(n - 1) / 2 | 0);
+            var list_1 = A2(balancedTrees,x,n / 2 | 0);
+            return _U.eq(A2($Basics.rem,n,2),1) ? A3(mergeTrees,x,list_1,list_1) : A2($Basics._op["++"],
+            A3(mergeTrees,x,list_1,list_2),
+            A3(mergeTrees,x,list_2,list_1));
+         }
+   });
+   var addNode = F2(function (x,t) {
+      var _p8 = t;
+      if (_p8.ctor === "Empty") {
+            return A3(Node,x,Empty,Empty);
+         } else {
+            if (_p8._1.ctor === "Empty" && _p8._2.ctor === "Empty") {
+                  var _p9 = _p8._0;
+                  return _U.eq(x,2 * _p9) ? A3(Node,_p9,A3(Node,x,Empty,Empty),Empty) : _U.eq(x,2 * _p9 + 1) ? A3(Node,
+                  _p9,
+                  Empty,
+                  A3(Node,x,Empty,Empty)) : A3(Node,_p9,Empty,Empty);
+               } else {
+                  var _p12 = _p8._0;
+                  var _p11 = _p8._2;
+                  var _p10 = _p8._1;
+                  return A2(isMem,x / 2 | 0,_p10) ? A3(Node,_p12,A2(addNode,x,_p10),_p11) : A3(Node,_p12,_p10,A2(addNode,x,_p11));
+               }
+         }
+   });
+   var addNodes = F2(function (l,t) {
+      addNodes: while (true) {
+         var _p13 = l;
+         if (_p13.ctor === "[]") {
+               return t;
+            } else {
+               var _v14 = _p13._1,_v15 = A2(addNode,_p13._0,t);
+               l = _v14;
+               t = _v15;
+               continue addNodes;
+            }
+      }
+   });
+   var ialmostCompleteTrees = function (h) {
+      var f_height = h - 1;
+      var last_node = Math.pow(2,f_height) - 1;
+      var full_tree = A2(addNodes,_U.range(1,last_node),Empty);
+      var row_list = subsequences(_U.range(Math.pow(2,f_height),Math.pow(2,h) - 1));
+      var row_length = $List.length(row_list);
+      return _U.eq(h,0) ? _U.list([Empty]) : $List.reverse(A2($List.drop,
+      1,
+      $List.reverse(A3($List.map2,addNodes,row_list,A2($List.repeat,row_length,full_tree)))));
+   };
+   var almostCompleteTrees = F2(function (x,h) {
+      var change = function (t) {    var _p14 = t;if (_p14.ctor === "Empty") {    return Empty;} else {    return A3(Node,x,change(_p14._1),change(_p14._2));}};
+      var tree_list = ialmostCompleteTrees(h);
+      return A2($List.map,change,tree_list);
+   });
+   var suffixes = function (xs) {
+      var _p15 = xs;
+      if (_p15.ctor === "[]") {
+            return _U.list([_U.list([])]);
+         } else {
+            return A2($List._op["::"],xs,suffixes(_p15._1));
+         }
+   };
+   var iCompleteTrees = function (h) {
+      var f_height = h - 1;
+      var last_node = Math.pow(2,f_height) - 1;
+      var full_tree = A2(addNodes,_U.range(1,last_node),Empty);
+      var row_list = A2($List.map,$List.reverse,suffixes($List.reverse(_U.range(Math.pow(2,f_height),Math.pow(2,h) - 1))));
+      var row_length = $List.length(row_list);
+      return _U.eq(h,0) ? _U.list([Empty]) : A2($List.drop,1,$List.reverse(A3($List.map2,addNodes,row_list,A2($List.repeat,row_length,full_tree))));
+   };
+   var completeTrees = F2(function (x,h) {
+      var change = function (t) {    var _p16 = t;if (_p16.ctor === "Empty") {    return Empty;} else {    return A3(Node,x,change(_p16._1),change(_p16._2));}};
+      var tree_list = iCompleteTrees(h);
+      return A2($List.map,change,tree_list);
+   });
+   return _elm.ListsAndTrees.values = {_op: _op
+                                      ,suffixes: suffixes
+                                      ,Empty: Empty
+                                      ,Node: Node
+                                      ,mem: mem
+                                      ,fullTree: fullTree
+                                      ,balancedTree: balancedTree
+                                      ,create2: create2
+                                      ,mergeTrees: mergeTrees
+                                      ,balancedTrees: balancedTrees
+                                      ,isMem: isMem
+                                      ,addNode: addNode
+                                      ,addNodes: addNodes
+                                      ,iCompleteTrees: iCompleteTrees
+                                      ,completeTrees: completeTrees
+                                      ,subsequences: subsequences
+                                      ,ialmostCompleteTrees: ialmostCompleteTrees
+                                      ,almostCompleteTrees: almostCompleteTrees};
+};

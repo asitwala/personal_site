@@ -28,18 +28,20 @@
 					{{ linkpost.title }}
 				</h1>
 
-				{% for link in links %}
+				<div id = "link_list">
+					{% for link in links %}
 
-					{% if link.linkpost == linkpost %}
-						<p class = "link_desc"> {{ link.linkdesc }} 
-							<span> | </span> 
-							<a href = "{{ link.linksite }}">
-								{{ link.linksite }}
-							</a>
+						{% if link.linkpost == linkpost %}
+							<p> {{ link.linkdesc }} 
+								<span> | </span> 
+								<a href = "{{ link.linksite }}">
+									{{ link.linksite }}
+								</a>
+							</p>
 
-					{% endif %}
-
-				{% endfor %}
+						{% endif %}
+					{% endfor %}
+				</div>
 
 			</div>
 

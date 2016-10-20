@@ -1,0 +1,172 @@
+Elm.DrawTrees = Elm.DrawTrees || {};
+Elm.DrawTrees.make = function (_elm) {
+   "use strict";
+   _elm.DrawTrees = _elm.DrawTrees || {};
+   if (_elm.DrawTrees.values) return _elm.DrawTrees.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Color = Elm.Color.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Graphics$Collage = Elm.Graphics.Collage.make(_elm),
+   $Graphics$Element = Elm.Graphics.Element.make(_elm),
+   $List = Elm.List.make(_elm),
+   $ListsAndTrees = Elm.ListsAndTrees.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Mouse = Elm.Mouse.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Text = Elm.Text.make(_elm),
+   $Window = Elm.Window.make(_elm);
+   var _op = {};
+   var treeSize = function (t) {
+      var _p0 = t;
+      if (_p0.ctor === "Empty") {
+            return 0;
+         } else {
+            if (_p0._1.ctor === "Empty" && _p0._2.ctor === "Empty") {
+                  return 1;
+               } else {
+                  return 1 + treeSize(_p0._1) + treeSize(_p0._2);
+               }
+         }
+   };
+   var treeHeight = function (t) {
+      var _p1 = t;
+      if (_p1.ctor === "Empty") {
+            return 0;
+         } else {
+            if (_p1._1.ctor === "Empty" && _p1._2.ctor === "Empty") {
+                  return 1;
+               } else {
+                  return 1 + A2($Basics.max,treeHeight(_p1._1),treeHeight(_p1._2));
+               }
+         }
+   };
+   var drawPaths = F5(function (t,pos_x,pos_y,dist_x,dist_y) {
+      var _p2 = t;
+      _v2_4: do {
+         if (_p2.ctor === "Empty") {
+               return _U.list([_U.list([])]);
+            } else {
+               if (_p2._1.ctor === "Node") {
+                     if (_p2._1._1.ctor === "Empty" && _p2._1._2.ctor === "Empty" && _p2._2.ctor === "Empty") {
+                           return _U.list([_U.list([{ctor: "_Tuple2",_0: pos_x,_1: pos_y},{ctor: "_Tuple2",_0: pos_x - dist_x,_1: pos_y - dist_y}])]);
+                        } else {
+                           break _v2_4;
+                        }
+                  } else {
+                     if (_p2._2.ctor === "Empty") {
+                           return _U.list([_U.list([])]);
+                        } else {
+                           if (_p2._2._1.ctor === "Empty" && _p2._2._2.ctor === "Empty") {
+                                 return _U.list([_U.list([{ctor: "_Tuple2",_0: pos_x,_1: pos_y},{ctor: "_Tuple2",_0: pos_x + dist_x,_1: pos_y - dist_y}])]);
+                              } else {
+                                 break _v2_4;
+                              }
+                        }
+                  }
+            }
+      } while (false);
+      return A2($Basics._op["++"],
+      _U.list([_U.list([{ctor: "_Tuple2",_0: pos_x,_1: pos_y},{ctor: "_Tuple2",_0: pos_x - dist_x,_1: pos_y - dist_y}])
+              ,_U.list([{ctor: "_Tuple2",_0: pos_x,_1: pos_y},{ctor: "_Tuple2",_0: pos_x + dist_x,_1: pos_y - dist_y}])]),
+      A2($Basics._op["++"],
+      A5(drawPaths,_p2._1,pos_x - dist_x,pos_y - dist_y,dist_x / 2,dist_y * 1.2),
+      A5(drawPaths,_p2._2,pos_x + dist_x,pos_y - dist_y,dist_x / 2,dist_y * 1.2)));
+   });
+   var drawNodes = F5(function (t,pos_x,pos_y,dist_x,dist_y) {
+      var shape_e = A2($Graphics$Collage.filled,A4($Color.rgba,6,1,99,0.7),$Graphics$Collage.circle(2.5));
+      var shape_d = A2($Graphics$Collage.filled,A4($Color.rgba,6,1,99,0.5),$Graphics$Collage.circle(5));
+      var shape_c = A2($Graphics$Collage.filled,A4($Color.rgba,6,1,99,0.2),$Graphics$Collage.circle(7.5));
+      var shape_b = A2($Graphics$Collage.filled,A4($Color.rgba,142,253,255,0.5),$Graphics$Collage.circle(9));
+      var shape_a = A2($Graphics$Collage.outlined,$Graphics$Collage.dotted($Color.blue),$Graphics$Collage.circle(9));
+      var shape_1 = $Graphics$Collage.group(_U.list([shape_a,shape_b,shape_c,shape_d,shape_e]));
+      var _p3 = t;
+      if (_p3.ctor === "Empty") {
+            return _U.list([]);
+         } else {
+            if (_p3._1.ctor === "Empty" && _p3._2.ctor === "Empty") {
+                  return _U.list([A2($Graphics$Collage.move,{ctor: "_Tuple2",_0: pos_x,_1: pos_y},shape_1)]);
+               } else {
+                  return A2($Basics._op["++"],
+                  _U.list([A2($Graphics$Collage.move,{ctor: "_Tuple2",_0: pos_x,_1: pos_y},shape_1)]),
+                  A2($Basics._op["++"],
+                  A5(drawNodes,_p3._1,pos_x - dist_x,pos_y - dist_y,dist_x / 2,dist_y * 1.2),
+                  A5(drawNodes,_p3._2,pos_x + dist_x,pos_y - dist_y,dist_x / 2,dist_y * 1.2)));
+               }
+         }
+   });
+   var view = F2(function (_p4,t) {
+      var _p5 = _p4;
+      var _p7 = _p5._0;
+      var _p6 = _p5._1;
+      var size_form = A2($Graphics$Collage.move,
+      {ctor: "_Tuple2",_0: 0,_1: -310},
+      $Graphics$Collage.toForm($Graphics$Element.justified(A2($Text.color,
+      A4($Color.rgba,6,1,99,0.5),
+      A2($Text.height,16,$Text.bold($Text.fromString(A2($Basics._op["++"],"Number of Nodes = ",$Basics.toString(treeSize(t))))))))));
+      var height_form = A2($Graphics$Collage.move,
+      {ctor: "_Tuple2",_0: 0,_1: -290},
+      $Graphics$Collage.toForm($Graphics$Element.justified(A2($Text.color,
+      A4($Color.rgba,0,165,165,0.7),
+      A2($Text.height,20,$Text.bold($Text.fromString(A2($Basics._op["++"],"Height of Tree = ",$Basics.toString(treeHeight(t))))))))));
+      var label_form = A2($Graphics$Collage.move,
+      {ctor: "_Tuple2",_0: 0,_1: 260},
+      $Graphics$Collage.toForm($Graphics$Element.justified(A2($Text.height,
+      14,
+      $Text.fromString("Click anywhere on the screen to produce another complete tree.")))));
+      var title_form = A2($Graphics$Collage.move,
+      {ctor: "_Tuple2",_0: 0,_1: 290},
+      $Graphics$Collage.toForm($Graphics$Element.justified(A2($Text.height,24,$Text.bold($Text.fromString("A Visualization of Complete Trees"))))));
+      var path_list_1 = A5(drawPaths,t,0,220,175,62.5);
+      var path_list_2 = A2($List.map,$Graphics$Collage.path,path_list_1);
+      var path_list = A2($List.map,
+      function (x) {
+         return A2($Graphics$Collage.traced,_U.update($Graphics$Collage.defaultLine,{width: 2,color: A4($Color.rgba,0,165,165,0.6)}),x);
+      },
+      path_list_2);
+      var node_list = A5(drawNodes,t,0,220,175,62.5);
+      var tree_list = A2($Basics._op["++"],path_list,node_list);
+      return A3($Graphics$Collage.collage,
+      $Basics.fst({ctor: "_Tuple2",_0: _p7,_1: _p6}),
+      $Basics.snd({ctor: "_Tuple2",_0: _p7,_1: _p6}),
+      A2($List._op["::"],size_form,A2($List._op["::"],height_form,A2($List._op["::"],label_form,A2($List._op["::"],title_form,tree_list)))));
+   });
+   var extract_head = function (lst) {
+      var _p8 = lst;
+      if (_p8.ctor === "[]") {
+            return _U.crashCase("DrawTrees",{start: {line: 30,column: 3},end: {line: 32,column: 15}},_p8)("extract_head: lst = []");
+         } else {
+            return _p8._0;
+         }
+   };
+   var sampleListOn = F2(function (ticker,xs) {
+      var update_2 = F2(function (_p10,lst) {
+         var _p11 = lst;
+         if (_p11.ctor === "[]") {
+               return xs;
+            } else {
+               return A2($Basics._op["++"],_p11._1,_U.list([_p11._0]));
+            }
+      });
+      return A2($Signal.map,extract_head,A3($Signal.foldp,update_2,xs,ticker));
+   });
+   var initState = A2($Basics._op["++"],
+   $ListsAndTrees.iCompleteTrees(2),
+   A2($Basics._op["++"],
+   $ListsAndTrees.iCompleteTrees(3),
+   A2($Basics._op["++"],$ListsAndTrees.iCompleteTrees(4),A2($Basics._op["++"],$ListsAndTrees.iCompleteTrees(5),$ListsAndTrees.iCompleteTrees(6)))));
+   var signalTree = function () {    var ticker = $Mouse.clicks;return A2(sampleListOn,ticker,initState);}();
+   var main = A3($Signal.map2,view,$Window.dimensions,signalTree);
+   return _elm.DrawTrees.values = {_op: _op
+                                  ,initState: initState
+                                  ,extract_head: extract_head
+                                  ,sampleListOn: sampleListOn
+                                  ,drawNodes: drawNodes
+                                  ,drawPaths: drawPaths
+                                  ,treeHeight: treeHeight
+                                  ,treeSize: treeSize
+                                  ,view: view
+                                  ,signalTree: signalTree
+                                  ,main: main};
+};

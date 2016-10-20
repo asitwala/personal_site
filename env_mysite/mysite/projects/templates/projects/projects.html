@@ -35,7 +35,9 @@
 
 						{% for project_image in project_images %}
 							{% if project_image.project == project %}
-							<img src = "{{ project_image.image.url }}" alt = "{{ project.title }}"/>
+								<a href = "{{ project_image.image.url }}">
+									<img src = "{{ project_image.image.url }}" alt = "{{ project.title }}"/>
+								</a>
 							{% endif %}
 						{% endfor %}
 
@@ -53,11 +55,20 @@
 
 						{% if project.link != 'empty' %}
 							<h6>Check It Out | 
-								<a href = "{{ project.link }}" alt = "{{ project.title }}"> 
+								<a href = "{{ project.link }}" alt = "{{ project.title }} link"> 
 									{{ project.link }}
 								</a> 
 							</h6>
 						{% endif %}
+
+						{% if project.source_code != 'empty' %}
+						<h6>Source Code | 
+							<a href = "{{ project.source_code }}" alt = "{{ project.title }} source code"> 
+								{{ project.source_code }}
+							</a> 
+						</h6>
+						{% endif %}
+
 						<hr>
 						<p class = "project_text"> {{ project.text }} </p>
 
@@ -81,12 +92,22 @@
 							</h6>
 						{% endif %}
 
+						{% if project.source_code != 'empty' %}
+						<h6>Source Code | 
+							<a href = "{{ project.source_code }}" alt = "{{ project.title }} source code"> 
+								{{ project.source_code }}
+							</a> 
+						</h6>
+						{% endif %}
+
 						<hr>
 						<p class = "project_text"> {{ project.text }} </p>
 
 						{% for project_image in project_images %}
 							{% if project_image.project == project %}
-								<img src = "{{ project_image.image.url }}" alt = "{{ project.title }}"/>
+								<a href ="{{ project_image.image.url }}">
+								 	<img src = "{{ project_image.image.url }}" alt = "{{ project.title }}"/>
+								</a>
 							{% endif %}
 						{% endfor %}
 
@@ -110,9 +131,7 @@
 				</p>
 			</div>
 
-
 		</div>
-
 
 		<div id = "footer"> 
 			<p id = "footer_element"> 
