@@ -152,9 +152,9 @@ except ImportError:
 # reference: http://agiliq.com/blog/2014/06/heroku-django-s3-for-serving-media-files/
 
 AWS_QUERYSTRING_AUTH = False
-AWS_ACCESS_KEY_ID = os.environ['AKIAIJT24XHQEZPWEFUQ']
-AWS_SECRET_ACCESS_KEY = os.environ['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']
-AWS_STORAGE_BUCKET_NAME = os.environ['www.asitwala.herokuapp.com']
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
 MEDIA_URL = 'http://%s.s3.amazonaws.com/your-folder/' % AWS_STORAGE_BUCKET_NAME
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
 
