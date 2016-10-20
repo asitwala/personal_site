@@ -149,18 +149,11 @@ except ImportError:
 
 
 
-# for AWS S3 support
-# reference: http://agiliq.com/blog/2014/06/heroku-django-s3-for-serving-media-files/
-
-# AWS_QUERYSTRING_AUTH = False
-# AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-# AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-# AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
-# MEDIA_URL = 'http://%s.s3.amazonaws.com/your-folder/' % AWS_STORAGE_BUCKET_NAME
-# DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
-
 
 # reference: https://www.caktusgroup.com/blog/2014/11/10/Using-Amazon-S3-to-store-your-Django-sites-static-and-media-files/
+import boto
+from boto.s3.connection import OrdinaryCallingFormat, Location
+
 AWS_STORAGE_BUCKET_NAME = 'asitwala-heroku'
 AWS_ACCESS_KEY_ID = 'AKIAIXNF47JU4IE22QXQ'
 AWS_SECRET_ACCESS_KEY = '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'
@@ -171,13 +164,19 @@ AWS_SECRET_ACCESS_KEY = 'YOanvr5FSKlyCtFrdG929XP8SeLdQHQaqcZd4Mye'
 # We also use it in the next setting.
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-# This is used by the `static` template tag from `static`, if you're using that. Or if anything else
-# refers directly to STATIC_URL. So it's safest to always set it.
-STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+# serving static files
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'custom_storage.StaticStorage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 
-# Tell the staticfiles app to use S3Boto storage when writing the collected static files (when
-# you run `collectstatic`).
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# serving media files
+MEDIAFILES_LOCATION = 'media'
+MEDIAFILES_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'custom_storage.MediaStorage'
+
+AWS_AUTO_CREATE_BUCKET = False
+AWS_S3_HOST = 's3-us-west-1.amazonaws.com'
+AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
 
 
 
