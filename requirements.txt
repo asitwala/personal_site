@@ -1,7 +1,8 @@
+boto==2.43.0
 dj-database-url==0.4.1
 Django==1.8.13
+django-storages==1.5.1
 gunicorn==19.6.0
 Pillow==3.4.1
 virtualenv==15.0.3
 whitenoise==3.2.2
-psycopg2==2.5.4

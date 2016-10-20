@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mez!cm$(*d!34v(7anz(wludp=2@qrip(xm_se$v(0flko!*_-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -126,7 +126,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # reference: https://djangogirls.gitbooks.io/django-girls-tutorial-extensions/content/heroku/
@@ -144,3 +144,19 @@ try:
     from .local_settings import *
 except ImportError:
     pass
+
+
+
+# for AWS S3 support
+# reference: http://agiliq.com/blog/2014/06/heroku-django-s3-for-serving-media-files/
+INSTALLED_APPS + ('storages',)
+
+AWS_QUERYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID = os.environ['AKIAIJT24XHQEZPWEFUQ']
+AWS_SECRET_ACCESS_KEY = os.environ['XIlonLUOtX65ja37Yb34A/HTPDWpW30R7bAJVFZl']
+AWS_STORAGE_BUCKET_NAME = os.environ['www.asitwala.herokuapp.com']
+MEDIA_URL = 'http://%s.s3.amazonaws.com/your-folder/' % AWS_STORAGE_BUCKET_NAME
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+
+
+
