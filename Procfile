@@ -1,1 +1,1 @@
-web: gunicorn ./env_mysite/mysite/mysite.wsgi
+web: gunicorn mysite.wsgi
