@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Project, ProjectImage
 
 def projects_page(request): 
-	projects = Project.objects.all()
+	projects = Project.objects.all()[::-1]
 	project_images = ProjectImage.objects.all()
 	return render(request, 'projects/projects.html', 
 		{'projects': projects, 'project_images': project_images})
