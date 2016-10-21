@@ -70,7 +70,7 @@
 						{% endif %}
 
 						<hr>
-						<p class = "project_text"> {{ project.text }} </p>
+						<p class = "project_text"> {{ project.text|linebreaksbr }} </p>
 
 					{% else %}
 
@@ -101,7 +101,7 @@
 						{% endif %}
 
 						<hr>
-						<p class = "project_text"> {{ project.text }} </p>
+						<p class = "project_text"> {{ project.text||linebreaksbr }} </p>
 
 						{% for project_image in project_images %}
 							{% if project_image.project == project %}
