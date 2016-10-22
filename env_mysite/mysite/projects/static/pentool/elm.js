@@ -11762,14 +11762,14 @@ Elm.PenTool.make = function (_elm) {
       i.displays.pointStroke,
       i.points) : _U.list([]);
       var renderPic = _U.eq(i.displays.showPractice,true) ? _U.list([A2($Svg.image,
-      _U.list([$Svg$Attributes.height("100%"),$Svg$Attributes.width("100%"),$Svg$Attributes.xlinkHref("/static/pentool/exercise.png")]),
+      _U.list([$Svg$Attributes.height("100%"),$Svg$Attributes.width("100%"),$Svg$Attributes.xlinkHref("asitwala-heroku.s3.amazonaws.com/static/pentool/exercise.png")]),
       _U.list([]))]) : _U.list([]);
-      var imgCanvasBlue = $ViewHelpers.icon("/static/pentool/canvasBlue.png");
-      var imgCanvasGreen = $ViewHelpers.icon("/static/pentool/canvasGreen.png");
-      var imgCanvasRed = $ViewHelpers.icon("/static/pentool/canvasRed.png");
-      var imgPenToolBlue = $ViewHelpers.icon("/static/pentool/penToolBlue.png");
-      var imgPenToolGreen = $ViewHelpers.icon("/static/pentool/penToolGreen.png");
-      var imgPenToolRed = $ViewHelpers.icon("/static/pentool/penToolRed.png");
+      var imgCanvasBlue = $ViewHelpers.icon("asitwala-heroku.s3.amazonaws.com/static/pentool/canvasBlue.png");
+      var imgCanvasGreen = $ViewHelpers.icon("asitwala-heroku.s3.amazonaws.com/static/pentool/canvasGreen.png");
+      var imgCanvasRed = $ViewHelpers.icon("asitwala-heroku.s3.amazonaws.com/static/pentool/canvasRed.png");
+      var imgPenToolBlue = $ViewHelpers.icon("asitwala-heroku.s3.amazonaws.com/static/pentool/penToolBlue.png");
+      var imgPenToolGreen = $ViewHelpers.icon("asitwala-heroku.s3.amazonaws.com/static/pentool/penToolGreen.png");
+      var imgPenToolRed = $ViewHelpers.icon("asitwala-heroku.s3.amazonaws.com/static/pentool/penToolRed.png");
       var buttonClear = A3($ViewHelpers.mkbutton,actionMailbox.address,"CLEAR CANVAS",Clear);
       var buttonFinish = A3($ViewHelpers.mkbutton,actionMailbox.address,"END",Finish);
       var buttonUndo = A3($ViewHelpers.mkbutton,actionMailbox.address,"UNDO (current path)",Undo);
