@@ -1,5 +1,3 @@
-'use strict'; 
-
 var Elm = Elm || { Native: {} };
 Elm.Native.Array = {};
 Elm.Native.Array.make = function(localRuntime) {
@@ -11764,14 +11762,14 @@ Elm.PenTool.make = function (_elm) {
       i.displays.pointStroke,
       i.points) : _U.list([]);
       var renderPic = _U.eq(i.displays.showPractice,true) ? _U.list([A2($Svg.image,
-      _U.list([$Svg$Attributes.height("100%"),$Svg$Attributes.width("100%"),$Svg$Attributes.xlinkHref(myapp.url + "pentool/exercise.png")]),
+      _U.list([$Svg$Attributes.height("100%"),$Svg$Attributes.width("100%"),$Svg$Attributes.xlinkHref(mysite_url + "pentool/exercise.png")]),
       _U.list([]))]) : _U.list([]);
-      var imgCanvasBlue = $ViewHelpers.icon(myapp.url + "pentool/canvasBlue.png");
-      var imgCanvasGreen = $ViewHelpers.icon(myapp.url + "pentool/canvasGreen.png");
-      var imgCanvasRed = $ViewHelpers.icon(myapp.url + "pentool/canvasRed.png");
-      var imgPenToolBlue = $ViewHelpers.icon(myapp.url + "penToolBlue.png");
-      var imgPenToolGreen = $ViewHelpers.icon(myapp.url + "pentool/penToolGreen.png");
-      var imgPenToolRed = $ViewHelpers.icon(myapp.url + "pentool/penToolRed.png");
+      var imgCanvasBlue = $ViewHelpers.icon(mysite_url + "pentool/canvasBlue.png");
+      var imgCanvasGreen = $ViewHelpers.icon(mysite_url + "pentool/canvasGreen.png");
+      var imgCanvasRed = $ViewHelpers.icon(mysite_url + "pentool/canvasRed.png");
+      var imgPenToolBlue = $ViewHelpers.icon(mysite_url + "pentool/penToolBlue.png");
+      var imgPenToolGreen = $ViewHelpers.icon(mysite_url + "pentool/penToolGreen.png");
+      var imgPenToolRed = $ViewHelpers.icon(mysite_url + "pentool/penToolRed.png");
       var buttonClear = A3($ViewHelpers.mkbutton,actionMailbox.address,"CLEAR CANVAS",Clear);
       var buttonFinish = A3($ViewHelpers.mkbutton,actionMailbox.address,"END",Finish);
       var buttonUndo = A3($ViewHelpers.mkbutton,actionMailbox.address,"UNDO (current path)",Undo);
