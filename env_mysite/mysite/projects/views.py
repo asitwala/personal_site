@@ -8,7 +8,7 @@ def projects_page(request):
 		{'projects': projects, 'project_images': project_images})
 
 def pen_tool_page(request): 
-	return render(request, 'projects/pentool.html', {})
+	return render(request, 'projects/pen_tool.html', {})
 
 def pi_page(request): 
 	return render(request, 'projects/pi.html', {})
