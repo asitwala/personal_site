@@ -178,19 +178,3 @@ AWS_AUTO_CREATE_BUCKET = False
 AWS_S3_HOST = 's3-us-west-1.amazonaws.com'
 AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
 
-
-
-# reference: http://codeinthehole.com/writing/console-logging-to-stdout-in-django/
-
-import sys
-
-LOGGING = {
-    'handlers': {
-        'console':{
-            'level':'INFO',
-            'class':'logging.StreamHandler',
-            'stream': sys.stdout
-        },
-    }
-}
-
