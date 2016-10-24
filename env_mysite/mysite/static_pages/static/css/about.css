@@ -45,8 +45,8 @@ body {
 
 
 .header {
-	font-family: "Gill Sans", sans-serif;
-	font-weight: 100;
+	font-family: "Advent Pro", "Gill Sans", sans-serif;
+	font-weight: 300;
 	text-align: center;
 	margin-top: 5%;
 	width: 100%;
@@ -67,12 +67,12 @@ li a {
 	float: left;
 	margin-left: 12.5%;
 	font-size: 1.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 li a:hover {
 	text-decoration: none ;
-	color: rgba(172, 55, 221, 0.85); /* purple */
+	color: rgba(190, 0, 220, 0.85); /* purple */
 }
 
 #footer {
@@ -82,7 +82,7 @@ li a:hover {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 @media screen and (max-width: 640px){
@@ -102,7 +102,6 @@ li a:hover {
 	top: 95%;
 	left: 68.5%;
 }
-
 
 body p {
 	margin: 0; 
@@ -128,15 +127,15 @@ body h2 {
 }
 
 .magenta {
-	color: rgba(197, 7, 170, 0.85);
+	color: rgba(180, 12, 120, 0.85);
 }
 
 .orange {
-	color: rgba(241, 169, 73, 0.85);
+	color: rgba(219, 113, 27, 0.85);
 }
 
 .purple {
-	color: rgba(172, 55, 221, 0.85); 
+	color: rgba(190, 0, 220, 0.85); 
 }
 
 #contact {
@@ -144,9 +143,9 @@ body h2 {
 }
 
 #contact a {
-	color: rgba(172, 55, 221, 0.85); 
+	color: rgba(190, 0, 220, 0.85); 
 }
 
 #contact a:hover {
-	color: rgba(241, 169, 73, 0.85);
+	color: rgba(219, 113, 27, 0.85);
 }

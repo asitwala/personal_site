@@ -45,8 +45,8 @@ body {
 
 
 .header {
-	font-family: "Gill Sans", sans-serif;
-	font-weight: 100;
+	font-family: "Advent Pro", "Gill Sans", sans-serif;
+	font-weight: 300;
 	text-align: center;
 	margin-top: 5%;
 	width: 100%;
@@ -66,12 +66,12 @@ li a {
 	float: left;
 	margin-right: 9.5%;
 	font-size: 1.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 li a:hover {
 	text-decoration: none;
-	color: rgba(172, 55, 221, 0.85); /* purple */
+	color: rgba(190, 0, 220, 0.85); /* purple */
 }
 
 #container {
@@ -89,25 +89,25 @@ li a:hover {
 	font-family: "Gill Sans", sans-serif;
 	font-weight: 100; 
 	font-size: 1.5vw; 
-	color: rgba(197, 7, 170, 0.85); /* magenta */ 
+	color: rgba(180, 12, 120, 0.85); /* magenta */ 
 }
 
 #back_link a:hover {
 	text-decoration: none;
-	color: rgba(241, 169, 73, 0.85); 
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 .link_content h1 {
 	font-family: inherit, "Gill Sans", sans-serif;
 	font-weight: 100; 
 	font-size: 3.5vw; 
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 #link_list {
 	background-color: rgba(0, 0, 0, 0.15);
-	border-left: 0.4em solid rgba(172, 55, 221, 0.45);
-	border-bottom: 0.05em solid rgba(172, 55, 221, 0.55);
+	border-left: 0.4em solid rgba(190, 0, 220, 0.45); /* purple */
+	border-bottom: 0.05em solid rgba(190, 0, 220, 0.55);
 	border-radius: 0.75em;
 	padding: 3%;
 }
@@ -115,21 +115,21 @@ li a:hover {
 .link_content p {
 	font-family: "Gill Sans", sans-serif;
 	font-size: 1.5vw;
-	color: rgba(197, 7, 170, 0.85); /* magenta */ ;
+	color: rgba(180, 12, 120, 0.85); /* magenta */ ;
 }
 
 .link_content p span {
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 .link_content p a {
 	font-family: "Gill Sans", sans-serif;
-	color: rgba(172, 55, 221, 0.85); /* purple */ 
+	color: rgba(190, 0, 220, 0.85); /* purple */ 
 }
 
 .link_content p a:hover {
 	text-decoration: none;
-	color: rgba(241, 169, 73, 0.85); /* magenta */ 
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */ 
 }
 
 #footer {
@@ -142,5 +142,5 @@ li a:hover {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }

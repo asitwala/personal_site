@@ -49,8 +49,8 @@ body {
 /* <---------- END TRANSITIONS AND OPTIMIZATIONS  */ 
 
 .header {
-	font-family: "Gill Sans", sans-serif;
-	font-weight: 100;
+	font-family: "Advent Pro", "Gill Sans", sans-serif;
+	font-weight: 300;
 	text-align: center;
 	margin-top: 5%;
 	width: 100%;
@@ -70,12 +70,12 @@ li a {
 	float: left;
 	margin-right: 9.5%;
 	font-size: 1.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 li a:hover {
 	text-decoration: none;
-	color: rgba(172, 55, 221, 0.85); /* purple */
+	color: rgba(190, 0, 220, 0.85); /* purple */
 }
 
 #container {
@@ -92,7 +92,7 @@ li a:hover {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */	
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */	
 }
 
 @media screen and (max-height: 360px){
@@ -103,14 +103,14 @@ li a:hover {
 
 #back_link a {
 	text-decoration: none; 
-	color: rgba(197, 7, 170, 0.85); /* magenta */
+	color: rgba(180, 12, 120, 0.85); /* magenta */
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1.5vw;
 }
 
 #back_link a:hover {
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 .main_content {
@@ -124,17 +124,17 @@ li a:hover {
 .main_content h1 {
 	font-weight: 100;
 	font-size: 3.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 .date {
 	font-size: 1.25vw;
-	color: rgba(172, 55, 221, 1); /* purple */
+	color: rgba(190, 0, 220, 1); /* purple */
 }
 
 #posted {
 	font-size: 1.25vw;
-	color: rgba(197, 7, 170, 1); /* magenta */
+	color: rgba(180, 12, 120, 1); /* magenta */
 }
 
 .image_content {
@@ -154,7 +154,7 @@ li a:hover {
 	background-color: rgba(0, 0, 0, 0.2);
 	border-left-style: solid; 
 	border-left-width: 0.1vw;
-	border-color: rgba(241, 169, 73, 0.75);
+	border-color: rgba(219, 113, 27, 0.75); /* orange-yellow */
 }
 
 .painting_text {
@@ -167,7 +167,7 @@ li a:hover {
 	font-family: "Gill Sans", sans-serif;
 	font-weight: 100;
 	font-size: 1.45vw;
-	color: rgba(241, 169, 73, 0.85);
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */ 
 	background-color: rgba(0, 0, 0, 0.1); 
 }
 

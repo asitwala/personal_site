@@ -47,14 +47,14 @@ body {
 h1 a {
 	font-family: inherit, 'Gill Sans', sans-serif;
 	font-weight: 100;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 	font-size: 3.5vw;
 	margin-left: 1em;
 }
 
 h1 a:hover {
 	text-decoration: none;
-	color: rgba(197, 7, 170, 1); /* magenta */
+	color: rgba(180, 12, 120, 1); /* magenta */
 }
 
 
@@ -63,20 +63,20 @@ h1 .date {
 	font-weight: 100;
 	font-size: 1.25vw;
 	margin-left: 1.25em;
-	color: rgba(241, 169, 73, 1.0); /* orange-yellow */
+	color: rgba(219, 113, 27, 1.0); /* orange-yellow */
 }
 
 h1 .date_posted {
-	color: #c5078c; /* magenta */ 
+	color: rgba(180, 12, 120, 1); /* magenta */ 
 }
 
 .header {
 	margin-top: 2.75em;
 	margin-left: 2.5em;
 	width: 100%;
-	font-family: "Gill Sans", sans-serif; 
-	font-weight: 100;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	font-family: "Advent Pro", "Gill Sans", sans-serif; 
+	font-weight: 300;
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 .post_container {
@@ -91,7 +91,7 @@ h1 .date_posted {
 	font-size: 1.35vw;
 	font-family: "Gill Sans", sans-serif; 
 	font-weight: 100;
-	color: rgba(172, 55, 221, 0.75); /* purple */ 
+	color: rgba(190, 0, 220, 0.75); /* purple */ 
 }
 
 
@@ -107,12 +107,12 @@ li a {
 	float: left;
 	margin-right: 10%;
 	font-size: 1.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 li a:hover {
 	text-decoration: none;
-	color: rgba(172, 55, 221, 0.85); /* purple */
+	color: rgba(190, 0, 220, 0.85); /* purple */
 }
 
 /* reference: http://www.cssstickyfooter.com/using-sticky-footer-code.html
@@ -133,9 +133,8 @@ li a:hover {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1.25vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
-
 
 /* within "post_content" div */
 img {
@@ -149,11 +148,11 @@ img {
 }
 
 .image_link a:hover {
-	background-color: rgba(172, 55, 221, 0.85);
+	background-color: rgba(190, 0, 220, 0.85); /* purple */ 
 }
 
 hr {
 	border: 0;
-	border-top: 0.1em solid rgba(197, 7, 170, 0.4); /* magenta */
+	border-top: 0.1em solid rgba(180, 12, 120, 0.4); /* magenta */
 	margin-left: 2.25em;
 }

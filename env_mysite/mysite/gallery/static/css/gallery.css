@@ -48,8 +48,8 @@ body {
 
 
 .header {
-	font-family: "Gill Sans", sans-serif;
-	font-weight: 100;
+	font-family: "Advent Pro", "Gill Sans", sans-serif;
+	font-weight: 300;
 	text-align: center;
 	margin-top: 5%;
 	width: 100%;
@@ -69,12 +69,12 @@ li a {
 	float: left;
 	margin-right: 9.5%;
 	font-size: 1.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 li a:hover {
 	text-decoration: none;
-	color: rgba(172, 55, 221, 0.85); /* purple */
+	color: rgba(190, 0, 220, 0.85); /* purple */
 }
 
 #container {
@@ -91,12 +91,12 @@ li a:hover {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 
 .main_content {
-	width: 72.5vw;
+	width: 70vw;
 	text-align: center;
 	font-family: inherit, 'Gill Sans', sans-serif;
 	font-weight: 100;
@@ -115,10 +115,10 @@ li a:hover {
 }
 
 .image_effects:hover .cover {
-	color: rgba(241, 169, 73, 1); /* text color: orange-yellow */;
+	color: rgba(219, 113, 27, 1); /* text color: orange-yellow */;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(172, 55, 221, 0.25); /* overlay color: purple */
+	background-color: rgba(190, 0, 220, 0.25); /* overlay color: purple */
 	position: absolute; 
 	top: 0;
 	left: 0;
@@ -133,7 +133,7 @@ img {
 	background-color: rgba(0, 0, 0, 0.3);
 	border-style: solid;
 	border-width: 0.05vw;
-	border-color: rgba(241, 169, 73, 0.25); /* orange-yellow */
+	border-color: rgba(219, 113, 27, 0.25); /* orange-yellow */
 }
 
 

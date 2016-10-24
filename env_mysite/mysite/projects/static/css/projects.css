@@ -44,8 +44,8 @@ body {
 }
 
 .header {
-	font-family: "Gill Sans", sans-serif;
-	font-weight: 100;
+	font-family: "Advent Pro", "Gill Sans", sans-serif;
+	font-weight: 300;
 	text-align: center;
 	margin-top: 5%;
 	width: 100%;
@@ -65,12 +65,12 @@ li a {
 	float: left;
 	margin-left: 12.5%;
 	font-size: 1.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 li a:hover {
 	text-decoration: none;
-	color: rgba(172, 55, 221, 0.85); /* purple */
+	color: rgba(190, 0, 220, 0.85); /* purple */
 }
 
 /* reference: http://www.cssstickyfooter.com/using-sticky-footer-code.html
@@ -91,7 +91,7 @@ li a:hover {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1.25vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 
@@ -118,45 +118,45 @@ li a:hover {
 	font-family: inherit, 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 3.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 	text-align: center; 
 }
 
 .project_content h1 a {
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 .project_content h1 a:hover {
 	text-decoration: none; 
-	color: rgba(241, 169, 73, 0.85); /* just in case */
+	color: rgba(219, 113, 27, 0.85); /* just in case */
 }
 
 .project_content h6 {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */ 
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */ 
 	text-align: center;
 }
 
 .project_content h6 span {
-	color: rgba(197, 7, 170, 1); /* magenta */
+	color: rgba(180, 12, 120, 1); /* magenta */
 }
 
 .project_content h6 a {
-	color: rgba(197, 7, 170, 1); /* magenta */
+	color: rgba(180, 12, 120, 1); /* magenta */
 }
 
 .project_content h6 a:hover {
 	text-decoration: none; 
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 .project_content .project_text {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100; 
 	font-size: 1.5vw;
-	color: rgba(172, 55, 221, 0.85); /* purple */ 
+	color: rgba(190, 0, 220, 0.85); /* purple */ 
 	background: rgba(0, 0, 0, 0.25);
 	border-radius: 0.5em;
 	padding: 2%;
@@ -164,7 +164,7 @@ li a:hover {
 
 hr {
 	border: 0;
-	border-top: 0.1em solid rgba(241, 169, 73, 0.35); /* orange-yellow */
+	border-top: 0.1em solid rgba(219, 113, 27, 0.35); /* orange-yellow */
 	margin: 2%;
 }
 
@@ -179,7 +179,7 @@ hr {
 
 #project_divider hr{
 	border: 0;
-	border-top: 0.1em solid rgba(197, 7, 170, 0.35); /* magenta */
+	border-top: 0.1em solid rgba(180, 12, 120, 0.35); /* magenta */
 	width: 100%;
 	margin: 0; 
 	padding: 0; 
@@ -201,16 +201,16 @@ hr {
 }
 
 .nav_content a{
-	color: rgba(197, 7, 170, 0.85); /* magenta */ 
+	color: rgba(180, 12, 120, 0.85); /* magenta */ 
 }
 
 .nav_content a:hover {
 	text-decoration: none;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 .nav_content span {
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */ 
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */ 
 }
 
 

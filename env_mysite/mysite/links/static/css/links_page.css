@@ -45,8 +45,8 @@ body {
 
 
 .header {
-	font-family: "Gill Sans", sans-serif;
-	font-weight: 100;
+	font-family: "Advent Pro", "Gill Sans", sans-serif;
+	font-weight: 300;
 	text-align: center;
 	margin-top: 5%;
 	width: 100%;
@@ -66,12 +66,12 @@ li a {
 	float: left;
 	margin-right: 9.5%;
 	font-size: 1.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 li a:hover {
 	text-decoration: none;
-	color: rgba(172, 55, 221, 0.85); /* purple */
+	color: rgba(190, 0, 220, 0.85); /* purple */
 }
 
 #container {
@@ -85,8 +85,8 @@ li a:hover {
 	padding: 2%;
 	text-align: center;
 	background-color: rgba(0, 0, 0, 0.1);
-	border-left: 0.25em solid rgba(172, 55, 221, 0.25);
-	border-bottom: 0.01em solid rgba(172, 55, 221, 0.25);
+	border-left: 0.25em solid rgba(190, 0, 220, 0.25); /* purple */ 
+	border-bottom: 0.01em solid rgba(190, 0, 220, 0.25); /* purple */ 
 	border-radius: 0.6em;
 }
 
@@ -97,7 +97,7 @@ li a:hover {
 	font-family: "Gill Sans", sans-serif;
 	font-weight: 100; 
 	font-size: 1.5vw; 
-	color: rgba(241, 169, 73, 0.75); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.75); /* orange-yellow */
 }
 
 #link_content h3 {
@@ -109,10 +109,10 @@ li a:hover {
 	font-family: inherit, "Gill Sans", sans-serif;
 	font-weight: 100; 
 	font-size: 2vw; 
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 	background-color: rgba(0, 0, 0, 0.25);
-	border-left: 0.1em solid rgba(241, 169, 73, 0.85);
-	border-bottom: 0.025em solid rgba(241, 169, 73, 0.45);
+	border-left: 0.1em solid rgba(219, 113, 27, 0.85);
+	border-bottom: 0.025em solid rgba(219, 113, 27, 0.45); 
 	border-radius: 0.25em;
 	padding: 2%;
 	padding-right: 10%;
@@ -121,9 +121,9 @@ li a:hover {
 
 #link_content h3 a:hover {
 	text-decoration: none;
-	color: rgba(197, 7, 170, 0.85); /* magenta */ 
-	border-left: 0.05em solid rgba(197, 7, 170, 0.85);
-	border-bottom: 0.0125em solid rgba(197, 7, 170, 0.85);
+	color: rgba(180, 12, 120, 0.85); /* magenta */ 
+	border-left: 0.05em solid rgba(180, 12, 120, 0.85); 
+	border-bottom: 0.0125em solid rgba(180, 12, 120, 0.85);
 	background-color: rgba(0, 0, 0, 0.15);
 }
 
@@ -138,5 +138,5 @@ li a:hover {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }

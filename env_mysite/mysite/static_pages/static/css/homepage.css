@@ -43,8 +43,8 @@ body {
 }
 
 .header {
-	font-family: "Gill Sans", sans-serif;
-	font-weight: 100;
+	font-family: "Advent Pro", "Gill Sans", sans-serif;
+	font-weight: 300;
 	text-align: center;
 	margin-top: 5%;
 	width: 100%;
@@ -64,12 +64,12 @@ li a {
 	float: left;
 	margin-left: 12.5%;
 	font-size: 1.5vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 li a:hover {
 	text-decoration: none;
-	color: rgba(172, 55, 221, 0.85); /* purple */ 
+	color: rgba(190, 0, 220, 0.85); /* purple */ 
 }
 
 #footer {
@@ -79,7 +79,7 @@ li a:hover {
 	font-family: 'Gill Sans', sans-serif;
 	font-weight: 100;
 	font-size: 1vw;
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 @media screen and (max-width: 640px){
@@ -102,7 +102,7 @@ li a:hover {
 
 .main_content {
 	text-align: center;
-	margin-top: 10%;
+	margin-top: 8.25%;
 	margin-right: 30%;
 	padding: 0;
 	margin-bottom: 15%;
@@ -115,8 +115,8 @@ li a:hover {
 	font-family: "Advent Pro", sans-serif;
 	letter-spacing: -1px;
 	font-weight: 100;
-	font-size: 3.75vw;
-	color: rgba(241, 169, 73, 1); /* orange-yellow */
+	font-size: 4.25vw;
+	color: rgba(219, 113, 27, 1); /* orange-yellow */
 	margin-bottom: 0;
 
 }
@@ -128,23 +128,23 @@ li a:hover {
 }
 
 #plus_icon {
-	color: rgba(197, 7, 170, 0.85); /* magenta */
+	color: rgba(180, 12, 120, 0.85); /* magenta */
 	font-family: "Advent Pro", sans-serif; 
 	font-size: 4vw;
-	font-weight: bold;
+	font-weight: 300;
 	margin: 0;
 }
 
 #desc_1 {
-	color: rgba(172, 55, 221, 0.85); /* purple */ 
+	color: rgba(190, 0, 220, 0.85); /* purple */ 
 }
 
 #desc_2 {
-	color: rgba(241, 169, 73, 0.85); /* orange-yellow */
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 #desc_3 {
-	color: rgba(197, 7, 170, 0.85); /* magenta */
+	color: rgba(180, 12, 120, 0.85); /* magenta */
 }
 
 
