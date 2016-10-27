@@ -7,7 +7,7 @@ body {
 	background:  #3b0d00 url(../images/site_gallery.jpg);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
+	background-attachment: scroll;
 	margin: 0;
 	padding: 0;
     -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
@@ -138,19 +138,16 @@ li a:hover {
 }
 
 .image_content {
-	width: 85%;
-	position: relative;
+	width: 70%;
 }
 
 .actual_image {
-	position: absolute;
+	width: 60%;
 	float: left;
-	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
-	margin: 0.2%;
+	margin: 2%;
 	padding: 2%;
-	padding-right: 42.5%;
 	background-color: rgba(0, 0, 0, 0.2);
 	border-left-style: solid; 
 	border-left-width: 0.1vw;
@@ -158,17 +155,13 @@ li a:hover {
 }
 
 .painting_text {
-	width: 35.5%;
-	float: left;
-	position: absolute;
 	margin: 2%;
 	padding: 2%;
-	left: 42.5%; /* 7.5% + img.width - img.padding-right */
 	font-family: "Gill Sans", sans-serif;
 	font-weight: 100;
 	font-size: 1.45vw;
 	color: rgba(219, 113, 27, 0.85); /* orange-yellow */ 
-	background-color: rgba(0, 0, 0, 0.1); 
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
 
