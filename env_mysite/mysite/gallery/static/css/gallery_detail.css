@@ -1,13 +1,8 @@
-/* TRANSITIONS AND OPTIMIZATIONS ----------> */ 
 
 /* reference for transitions */ 
 /* http://stackoverflow.com/questions/11679567/using-css-for-fade-in-effect-on-page-load */ 
 
 body {
-	background:  #3b0d00 url(../images/site_gallery.jpg);
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: scroll;
 	margin: 0;
 	padding: 0;
     -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
@@ -45,10 +40,38 @@ body {
     to   { opacity: 1; }
 }
 
+#bg_img {
+	width: 100%; 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	z-index: 1; 
+}
 
-/* <---------- END TRANSITIONS AND OPTIMIZATIONS  */ 
+/* allow scrolling on absolutely sized "background_image" (just an img, not actual background-image) */
+/* reference: http://stackoverflow.com/questions/15685666/changing-image-sizes-proportionally-using-css */
+#container {
+	width: 100%; 
+	position: relative; 
+	z-index: 2;
+	overflow: auto;
+	/* set height through JavaScript */
+	/* height is based on background image height */
+}
 
-.header {
+#container_2 {
+	position: relative; 
+	height: auto; 
+}
+
+#full_height {
+	position: absolute;
+	height: 100%;
+	top: 0; 
+	left: 0;
+}
+
+#header {
 	font-family: "Advent Pro", "Gill Sans", sans-serif;
 	font-weight: 300;
 	text-align: center;
@@ -57,7 +80,6 @@ body {
 }
 
 /* reference for horizontal header: http://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu */
-
 ul { 
 	list-style-type: none; 
 	margin-left: 4.25%;
@@ -76,29 +98,6 @@ li a {
 li a:hover {
 	text-decoration: none;
 	color: rgba(190, 0, 220, 0.85); /* purple */
-}
-
-#container {
-	min-height: 100%;
-}
-
-#footer {
-	width: 20%;
-	padding: 2%;
-	margin-left: 2%;
-	position: relative;
-	clear: both;
-	float: right;
-	font-family: 'Gill Sans', sans-serif;
-	font-weight: 100;
-	font-size: 1vw;
-	color: rgba(219, 113, 27, 0.85); /* orange-yellow */	
-}
-
-@media screen and (max-height: 360px){
-	#footer {
-		opacity: 0; 
-	}
 }
 
 #back_link a {
@@ -139,6 +138,7 @@ li a:hover {
 
 .image_content {
 	width: 70%;
+	height: 100%; /* to push footer down */
 }
 
 .actual_image {
@@ -146,16 +146,13 @@ li a:hover {
 	float: left;
 	margin-left: auto;
 	margin-right: auto;
-	margin: 2%;
 	padding: 2%;
-	background-color: rgba(0, 0, 0, 0.2);
 	border-left-style: solid; 
 	border-left-width: 0.1vw;
 	border-color: rgba(219, 113, 27, 0.75); /* orange-yellow */
 }
 
 .painting_text {
-	margin: 2%;
 	padding: 2%;
 	font-family: "Gill Sans", sans-serif;
 	font-weight: 100;
@@ -163,5 +160,29 @@ li a:hover {
 	color: rgba(219, 113, 27, 0.85); /* orange-yellow */ 
 	background-color: rgba(0, 0, 0, 0.2);
 }
+
+#footer {
+	clear: both;
+	padding: 2%;
+	opacity: 85%;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1vw;
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
+}
+
+/* remove footer when dealing with smaller screens */
+@media screen and (max-height: 360px){
+	#footer {
+		opacity: 0; 
+	}
+}
+
+@media screen and (max-width: 640px){
+	#footer {
+		opacity: 0; 
+	}
+}
+
 
 

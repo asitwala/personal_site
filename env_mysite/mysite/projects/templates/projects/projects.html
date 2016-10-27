@@ -9,138 +9,170 @@
 		<title>Projects</title>
 	</head>
 
+	<body onload = "document.getElementById('container').style.height = document.getElementById('bg_img').height">
 
-	<body>
+		<img id = "bg_img" src = "{% static 'images/site_projects.jpg' %}" alt = "background image" />
+
 		<div id = "container">
-			<div class = "header"> 
-				<ul>
-					<li><a href = "{% url 'homepage' %}" >| Home </a></li>
-					<li><a href = "{% url 'about' %}" >| About </a></li>
-					<li><a href = "{% url 'gallery_page' %}" >| Art </a></li>
-					<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
-					<li><a href = "{% url 'links_page' %}" >| Links </a></li>
-				</ul>
-			</div> 
+			<div id = "container_2">
+				<div id = "full_height"></div>
+				<!-- reference above from http://stackoverflow.com/questions/17656623/position-absolute-scrolling -->
+				<div id = "header"> 
+					<ul>
+						<li><a href = "{% url 'homepage' %}" >| Home </a></li>
+						<li><a href = "{% url 'about' %}" >| About </a></li>
+						<li><a href = "{% url 'gallery_page' %}" >| Art </a></li>
+						<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
+						<li><a href = "{% url 'links_page' %}" >| Links </a></li>
+					</ul>
+				</div> 
 
-		
-			{% for project in projects %}
+				<!-- control structure for each Project object --> 
+				{% for project in projects %}
 
-				<div class = "project_content"> 
-					<h1>
-						<a  name = "{{ project.nickname }}"> 
-							{{ project.title }} 
-						</a>
-					</h1>
+					<div class = "project_content"> 
+						<h1>
+							<a  name = "{{ project.nickname }}"> 
+								{{ project.title }} 
+							</a>
+						</h1>
 
-					{% if project.image_at_top %}
+						<!-- if Project_Image object specified at top of post --> 
+						{% if project.image_at_top %}
 
-						{% for project_image in project_images %}
-							{% if project_image.project == project %}
-								<a href = "{{ project_image.image.url }}">
-									<img src = "{{ project_image.image.url }}" alt = "{{ project.title }}"/>
-								</a>
+							{% for project_image in project_images %}
+								{% if project_image.project == project %}
+									<a href = "{{ project_image.image.url }}">
+										<img src = "{{ project_image.image.url }}" alt = "{{ project.title }}"/>
+									</a>
+								{% endif %}
+							{% endfor %}
+
+							<h6> Organization | 
+								<span>
+									{{ project.organization }} 
+								</span>
+							</h6>
+
+							<h6> Team | 
+								<span>
+									{{ project.team }}
+								</span>
+							</h6>
+
+							{% if project.link != 'empty' %}
+								<h6>Check It Out | 
+									<a href = "{{ project.link }}" alt = "{{ project.title }} link"> 
+										{{ project.link }}
+									</a> 
+								</h6>
 							{% endif %}
-						{% endfor %}
 
-						<h6> Organization | 
-							<span>
-								{{ project.organization }} 
-							</span>
-						</h6>
-
-						<h6> Team | 
-							<span>
-								{{ project.team }}
-							</span>
-						</h6>
-
-						{% if project.link != 'empty' %}
-							<h6>Check It Out | 
-								<a href = "{{ project.link }}" alt = "{{ project.title }} link"> 
-									{{ project.link }}
+							{% if project.source_code != 'empty' %}
+							<h6>Source Code | 
+								<a href = "{{ project.source_code }}" alt = "{{ project.title }} source code"> 
+									{{ project.source_code }}
 								</a> 
 							</h6>
-						{% endif %}
-
-						{% if project.source_code != 'empty' %}
-						<h6>Source Code | 
-							<a href = "{{ project.source_code }}" alt = "{{ project.title }} source code"> 
-								{{ project.source_code }}
-							</a> 
-						</h6>
-						{% endif %}
-
-						<hr>
-						<p class = "project_text"> {{ project.text|linebreaksbr }} </p>
-
-					{% else %}
-
-						<h6> Organization | 
-							<span>
-								{{ project.organization }}
-							</span>
-						</h6>
-
-						<h6> Team | 
-							<span>
-								{{ project.team }}
-							</span> 
-						</h6>
-
-						{% if project.link != 'empty' %}
-							<h6>Check It Out | 
-								<a href = "{{ project.link }}" alt = "{{ project.title }}"> {{ project.link }}</a> 
-							</h6>
-						{% endif %}
-
-						{% if project.source_code != 'empty' %}
-						<h6>Source Code | 
-							<a href = "{{ project.source_code }}" alt = "{{ project.title }} source code"> 
-								{{ project.source_code }}
-							</a> 
-						</h6>
-						{% endif %}
-
-						<hr>
-						<p class = "project_text"> {{ project.text|linebreaksbr }} </p>
-
-						{% for project_image in project_images %}
-							{% if project_image.project == project %}
-								<a href ="{{ project_image.image.url }}">
-								 	<img src = "{{ project_image.image.url }}" alt = "{{ project.title }}"/>
-								</a>
 							{% endif %}
+
+							<hr>
+							<p class = "project_text"> {{ project.text|linebreaksbr }} </p>
+
+						<!-- if Project_Image object NOT specified at top of post --> 
+						{% else %}
+
+							<h6> Organization | 
+								<span>
+									{{ project.organization }}
+								</span>
+							</h6>
+
+							<h6> Team | 
+								<span>
+									{{ project.team }}
+								</span> 
+							</h6>
+
+							{% if project.link != 'empty' %}
+								<h6>Check It Out | 
+									<a href = "{{ project.link }}" alt = "{{ project.title }}"> {{ project.link }}</a> 
+								</h6>
+							{% endif %}
+
+							{% if project.source_code != 'empty' %}
+							<h6>Source Code | 
+								<a href = "{{ project.source_code }}" alt = "{{ project.title }} source code"> 
+									{{ project.source_code }}
+								</a> 
+							</h6>
+							{% endif %}
+
+							<hr>
+							<p class = "project_text"> {{ project.text|linebreaksbr }} </p>
+
+							{% for project_image in project_images %}
+								{% if project_image.project == project %}
+									<a href ="{{ project_image.image.url }}">
+									 	<img src = "{{ project_image.image.url }}" alt = "{{ project.title }}"/>
+									</a>
+								{% endif %}
+							{% endfor %}
+
+						{% endif %}
+					</div>
+
+					<div id = "project_divider">
+						<hr>
+					</div>
+					
+				{% endfor %}
+
+				<!-- navigation sidebar for projects -->
+				<div id = "nav_bar">
+					<p class = "nav_content"> 
+						{% for project in projects %}
+							<a href = "#{{ project.nickname }}">
+								{{ project.nickname }} 
+							</a>
+							<span> | </span>
 						{% endfor %}
-
-					{% endif %}
+					</p>
 				</div>
 
-				<div id = "project_divider">
-					<hr>
-				</div>
-				
-			{% endfor %}
-
-			<div id = "nav_bar">
-				<p class = "nav_content"> 
-					{% for project in projects %}
-						<a href = "#{{ project.nickname }}">
-							{{ project.nickname }} 
-						</a>
-						<span> | </span>
-					{% endfor %}
-				</p>
+				<div id = "footer"> 
+					<p id = "footer_element"> 
+						Built completely in Python web framework Django  | © asitwala 2016 
+					</p>
+				</div> 
 			</div>
-
 		</div>
-
-		<div id = "footer"> 
-			<p id = "footer_element"> 
-				Built completely in Python web framework Django  | © asitwala 2016 
-			</p>
-		</div> 
 
 	</body>
 
+	<script>
+		// resize container to size of background_image to allow for scrolling 
+		// mostly for mobile browser support since position:fixed for background
+		// leads to strange sizing
+		
+		// resize container to size of background_image to allow for scrolling 
+		// mostly for mobile browser support since position:fixed for background
+		// leads to strange sizing
+		
+		// intialize function
+		console.log("I'm in the script");
+		go();
+
+		window.addEventListener('resize', go);
+
+		function go(){
+          background_image = document.getElementById("bg_img");
+          container = document.getElementById("container"); 
+          container.style.height = background_image.height;
+          console.log(container.style.height);
+		};
+
+	</script>
 
 </html>
+

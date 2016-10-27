@@ -2,10 +2,6 @@
 /* http://stackoverflow.com/questions/11679567/using-css-for-fade-in-effect-on-page-load */ 
 
 body { 
-	background:  #3b0d00 url(../images/site_about.jpg);
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
 	margin: 0;
 	padding: 0;
     -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
@@ -19,7 +15,7 @@ body {
     from { opacity: 0; background: black;}
     to   { opacity: 1; }
 }
-
+/* Mozilla */
 @-moz-keyframes fadein {
     from { opacity: 0; background: black;}
     to   { opacity: 1; }
@@ -43,17 +39,32 @@ body {
     to   { opacity: 1; }
 }
 
+img {
+	width: 100%;
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	z-index: 1;
+}
 
-.header {
+#container {
+	width: 100%; 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	z-index: 2;
+}
+
+#header {
 	font-family: "Advent Pro", "Gill Sans", sans-serif;
 	font-weight: 300;
+	letter-spacing: 0.05em;
 	text-align: center;
 	margin-top: 5%;
 	width: 100%;
 }
 
 /* reference for horizontal header: http://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu */
-
 ul { 
 	list-style-type: none;
 	margin: 0;
@@ -75,37 +86,9 @@ li a:hover {
 	color: rgba(190, 0, 220, 0.85); /* purple */
 }
 
-#footer {
-	opacity: 85%;
-	position: relative;
-	clear: both;
-	font-family: 'Gill Sans', sans-serif;
-	font-weight: 100;
-	font-size: 1vw;
-	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
-}
-
-@media screen and (max-width: 640px){
-	#footer {
-		opacity: 0; 
-	}
-}
-
-@media screen and (max-height: 360px){
-	#footer {
-		opacity: 0; 
-	}
-}
-
-#footer_element {
-	position: fixed;
-	top: 95%;
-	left: 68.5%;
-}
-
 body p {
 	margin: 0; 
-	margin-bottom: 0.3em; /* vertical distance between sentences */
+	margin-bottom: 0.5em; /* vertical distance between sentences */
 }
 
 body .main_content {
@@ -113,11 +96,10 @@ body .main_content {
 	font-weight: 100;
 	font-size: 1.25vw;
 	width: 50%;
-	position: absolute;
-	top: 33%;
-	left: 48%;
-
+	margin-top: 13.5%;
+	margin-left: 48%;
 }
+
 body h2 { 
 	font-size: 3vw;
 	font-weight: 100;
@@ -148,4 +130,32 @@ body h2 {
 
 #contact a:hover {
 	color: rgba(219, 113, 27, 0.85);
+}
+
+#footer {
+	opacity: 85%;
+	position: relative;
+	clear: both;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1vw;
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
+}
+
+#footer_element {
+	float: right; 
+	margin-right: 2em;
+	margin-top: 4.5%;
+}
+
+@media screen and (max-width: 640px){
+	#footer {
+		opacity: 0; 
+	}
+}
+
+@media screen and (max-height: 360px){
+	#footer {
+		opacity: 0; 
+	}
 }

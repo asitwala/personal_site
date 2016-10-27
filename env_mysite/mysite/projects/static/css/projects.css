@@ -2,10 +2,6 @@
 /* http://stackoverflow.com/questions/11679567/using-css-for-fade-in-effect-on-page-load */ 
 
 body {
-	background: #3b0d00 url(../images/site_projects.jpg);
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
 	margin: 0;
 	padding: 0;
     -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
@@ -43,16 +39,47 @@ body {
     to   { opacity: 1; }
 }
 
-.header {
+#bg_img {
+	width: 100%; 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	z-index: 1;
+}
+
+/* allow scrolling on absolutely sized "background_image" (just an img, not actual background-image) */
+/* reference: http://stackoverflow.com/questions/15685666/changing-image-sizes-proportionally-using-css */
+#container {
+	width: 100%; 
+	position: relative; 
+	z-index: 2;
+	overflow: auto;
+	/* set height through JavaScript */
+	/* height is based on background image height */
+}
+
+#container_2 {
+	position: relative; 
+	height: auto; 
+}
+
+#full_height {
+	position: absolute;
+	height: 100%;
+	top: 0; 
+	left: 0;
+}
+
+#header {
 	font-family: "Advent Pro", "Gill Sans", sans-serif;
 	font-weight: 300;
+	letter-spacing: 0.05em;
 	text-align: center;
 	margin-top: 5%;
 	width: 100%;
 }
 
 /* reference for horizontal header: http://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu */
-
 ul { 
 	list-style-type: none; 
 	margin-left: 25%;
@@ -72,28 +99,6 @@ li a:hover {
 	text-decoration: none;
 	color: rgba(190, 0, 220, 0.85); /* purple */
 }
-
-/* reference: http://www.cssstickyfooter.com/using-sticky-footer-code.html
-   to make a sticky footer */
-
-#container {
-	min-height: 100%;
-}
-
-#footer {
-	float: right; 
-	margin-right: 2%;
-	padding: 2%;
-	position: relative;
-	height: 2.5vw;
-	clear: both;
-	padding-left: 3%;
-	font-family: 'Gill Sans', sans-serif;
-	font-weight: 100;
-	font-size: 1.25vw;
-	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
-}
-
 
 .project_content {
 	background-color: rgba(255, 255, 255, 0.05);
@@ -193,11 +198,10 @@ hr {
 	font-weight: 100; 
 	font-size: 1.5vw;
 	position: fixed;
-	top: 70%;
-	left: 2%;
+	margin-top: 30%;
+	margin-left: 2%;
 	width: 20%;
 	float: left;
-
 }
 
 .nav_content a{
@@ -211,6 +215,22 @@ hr {
 
 .nav_content span {
 	color: rgba(219, 113, 27, 0.85); /* orange-yellow */ 
+}
+
+/* reference: http://www.cssstickyfooter.com/using-sticky-footer-code.html
+   to make a sticky footer */
+#footer {
+	clear: both;
+	float: right; 
+	margin-right: 2%;
+	padding: 2%;
+	position: relative;
+	height: 2.5vw;
+	padding-left: 3%;
+	font-family: 'Gill Sans', sans-serif;
+	font-weight: 100;
+	font-size: 1.25vw;
+	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
 
 

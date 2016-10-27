@@ -2,10 +2,6 @@
 /* http://stackoverflow.com/questions/11679567/using-css-for-fade-in-effect-on-page-load */ 
 
 body {
-	background:  #3b0d00 url(../images/site_links.jpg);
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed; 
 	margin: 0;
 	padding: 0;
     -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
@@ -20,6 +16,7 @@ body {
     to   { opacity: 1; }
 }
 
+/* Mozilla */
 @-moz-keyframes fadein {
     from { opacity: 0; background: black;}
     to   { opacity: 1; }
@@ -43,17 +40,47 @@ body {
     to   { opacity: 1; }
 }
 
+#bg_img {
+	width: 100%; 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	z-index: 1; 
+}
 
-.header {
+/* allow scrolling on absolutely sized "background_image" (just an img, not actual background-image) */
+/* reference: http://stackoverflow.com/questions/15685666/changing-image-sizes-proportionally-using-css */
+#container {
+	width: 100%; 
+	position: relative; 
+	z-index: 2;
+	overflow: auto;
+	/* set height through JavaScript */
+	/* height is based on background image height */
+}
+
+#container_2 {
+	position: relative; 
+	height: auto; 
+}
+
+#full_height {
+	position: absolute;
+	height: 100%;
+	top: 0; 
+	left: 0;
+}
+
+#header {
 	font-family: "Advent Pro", "Gill Sans", sans-serif;
 	font-weight: 300;
+	letter-spacing: 0.05em;
 	text-align: center;
 	margin-top: 5%;
 	width: 100%;
 }
 
 /* reference for horizontal header: http://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_menu */
-
 ul { 
 	list-style-type: none; 
 	margin-left: 4.25%;
@@ -74,10 +101,6 @@ li a:hover {
 	color: rgba(190, 0, 220, 0.85); /* purple */
 }
 
-#container {
-	min-height: 100%;
-}
-
 #link_content {
 	width: 60%;
 	margin: 2%;
@@ -93,6 +116,7 @@ li a:hover {
 #link_content #intro {
 	margin-bottom: 10%;
 }
+
 #link_content h4 {
 	font-family: "Gill Sans", sans-serif;
 	font-weight: 100; 
@@ -127,7 +151,6 @@ li a:hover {
 	background-color: rgba(0, 0, 0, 0.15);
 }
 
-
 #footer {
 	float: left;
 	margin-right: 2%;
@@ -140,3 +163,17 @@ li a:hover {
 	font-size: 1vw;
 	color: rgba(219, 113, 27, 0.85); /* orange-yellow */
 }
+
+/* remove footer when dealing with smaller screens */
+@media screen and (max-width: 640px){
+	#footer {
+		opacity: 0; 
+	}
+}
+
+@media screen and (max-height: 360px){
+	#footer {
+		opacity: 0; 
+	}
+}
+

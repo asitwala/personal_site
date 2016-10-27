@@ -3,50 +3,47 @@
 <html> 
 	<head>
 		<link href="https://fonts.googleapis.com/css?family=Advent+Pro:300" rel="stylesheet">
-		<link rel = "stylesheet" href = "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel = "stylesheet" href = "{% static 'css/about.css' %}">
 		<title>About</title>
-
 	</head>
 
 	<body>
 
-		<div class = "header">
-			<ul>
-				<li><a href = "{% url 'homepage' %}" >| Home </a></li>
-				<li><a href = "{% url 'projects_page' %}" >| Projects </a></li>
-				<li><a href = "{% url 'gallery_page' %}" >| Art </a></li>
-				<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
-				<li><a href = "{% url 'links_page' %}" >| Links </a></li>
-			</ul>
+		<img src = "{% static 'images/site_about.jpg' %}" alt = "background image" />
+
+		<div id = "container">
+			<div id = "header">
+				<ul>
+					<li><a href = "{% url 'homepage' %}" >| Home </a></li>
+					<li><a href = "{% url 'projects_page' %}" >| Projects </a></li>
+					<li><a href = "{% url 'gallery_page' %}" >| Art </a></li>
+					<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
+					<li><a href = "{% url 'links_page' %}" >| Links </a></li>
+				</ul>
+			</div>
+
+			<div class = "main_content"> 
+				<p class = "purple">Hey, there! Thanks for checking out my personal website!</p>
+				<h2 class = "orange">I am</h2>
+				<p class = "magenta">>>> 21 years old</p>
+				<p class = "orange">>>> from Bradbury, California (southern CA)</p>
+				<p class = "magenta">>>> Gujarati</p>
+				<p class = "orange">>>> a dog lover </p>
+				<p class = "magenta">>>> a coffee aficionado (thanks to my dad and my roommate Malika)</p>
+				<p class = "orange">>>> a hobbyist artist</p>
+				<p class = "magenta">>>> interested in learning more about software engineering and data science (graphics, data viz, machine learning, and trading platforms)</p>
+				<p class = "orange">>>> a senior majoring in Computer Science and Economics at the University of Chicago</p>
+				<p class = "purple" id = "contact">Contact: asitwala17@gmail.com | asitwala@uchicago.edu | <a href = "https://www.linkedin.com/in/amysitwala">LinkedIn</a></p>
+			</div>
+			
+			<div id = "footer"> 
+				<p id = "footer_element"> 
+					Built completely in Python web framework Django  | © asitwala 2016 
+				</p>
+			</div> 
+
 		</div>
-
-
-		<div class = "main_content"> 
-			<p class = "purple">Hey, there! Thanks for checking out my personal website!</p>
-
-			<h2 class = "orange">I am</h2>
-
-			<p class = "magenta">>>> 21 years old</p>
-			<p class = "orange">>>> from Bradbury, California (southern CA)</p>
-			<p class = "magenta">>>> Gujarati</p>
-			<p class = "orange">>>> a dog lover </p>
-			<p class = "magenta">>>> a coffee aficionado (thanks to my dad and my roommate Malika)</p>
-			<p class = "orange">>>> a hobbyist artist</p>
-			<p class = "magenta">>>> interested in learning more about software engineering and data science (graphics, data viz, machine learning, and trading platforms)</p>
-			<p class = "orange">>>> a senior majoring in Computer Science and Economics at the University of Chicago</p>
-
-			<p class = "purple" id = "contact">Contact: asitwala17@gmail.com | asitwala@uchicago.edu | <a href = "https://www.linkedin.com/in/amysitwala">LinkedIn</a></p>
-		</div>
-
-		
-		<div id = "footer"> 
-			<p id = "footer_element"> 
-				Built completely in Python web framework Django  | © asitwala 2016 
-			</p>
-		</div> 
 
 	</body>
 
-
-</html> 
+</html>

@@ -8,45 +8,78 @@
 		<title>Links</title>
 	</head>
 
-	<body>
+	<body onload = "document.getElementById('container').style.height = document.getElementById('bg_img').height">
+
+		<img id = "bg_img" src = "{% static 'images/site_links.jpg' %}" alt = "background image"/>
 
 		<div id = "container">
-			<div class = "header">
-				<ul>
-					<li><a href = "{% url 'homepage' %}">| Home </a></li>
-					<li><a href = "{% url 'about' %}" >| About </a></li>
-					<li><a href = "{% url 'projects_page' %}">| Projects </a></li>
-					<li><a href = "{% url 'gallery_page' %}" >| Art </a></li>
-					<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
-				</ul>
-			</div>
-
-			<div id = "link_content">
-
-				<div id = "intro"> 
-					<h4> Click on a topic below to find links to sites that I have found helpful through the years. </h4>
-
-					<h4>I hope these sites will help you as well!</h4>
+			<div id = "container_2">
+				<div id = "full_height"></div>
+				<!-- reference above from http://stackoverflow.com/questions/17656623/position-absolute-scrolling -->
+				<div id = "header">
+					<ul>
+						<li><a href = "{% url 'homepage' %}">| Home </a></li>
+						<li><a href = "{% url 'about' %}" >| About </a></li>
+						<li><a href = "{% url 'projects_page' %}">| Projects </a></li>
+						<li><a href = "{% url 'gallery_page' %}" >| Art </a></li>
+						<li><a href = "{% url 'post_list' %}" >| Blog </a></li>
+					</ul>
 				</div>
 
-				{% for linkpost in linkposts %}
-					<h3>
-						<a href = "{% url 'links_detail' pk=linkpost.pk %}">
-							{{ linkpost.title }}
-						</a>
-					</h3>
-				{% endfor %}
-			</div>
-		</div>
+				<div id = "link_content">
 
-		<div id = "footer"> 
-			<p id = "footer_element"> 
-				Built completely in Python web framework Django  | © asitwala 2016 
-			</p>
-		</div> 
+					<div id = "intro"> 
+						<h4> Click on a topic below to find links to sites that I have found helpful through the years. </h4>
+
+						<h4>I hope these sites will help you as well!</h4>
+					</div>
+
+					<!-- control structure for LinkPost object -->
+					{% for linkpost in linkposts %}
+						<h3>
+							<a href = "{% url 'links_detail' pk=linkpost.pk %}">
+								{{ linkpost.title }}
+							</a>
+						</h3>
+					{% endfor %}
+
+				</div>
+
+				<div id = "footer"> 
+					<p id = "footer_element"> 
+						Built completely in Python web framework Django  | © asitwala 2016 
+					</p>
+				</div> 
+
+			</div>	
+
+		</div>
 
 	</body>
 
+	<script>
+		// resize container to size of background_image to allow for scrolling 
+		// mostly for mobile browser support since position:fixed for background
+		// leads to strange sizing
+		
+		// resize container to size of background_image to allow for scrolling 
+		// mostly for mobile browser support since position:fixed for background
+		// leads to strange sizing
+		
+		// intialize function
+		console.log("I'm in the script");
+		go();
 
+		window.addEventListener('resize', go);
+
+		function go(){
+	      background_image = document.getElementById("bg_img");
+	      container = document.getElementById("container"); 
+	      container.style.height = background_image.height;
+	      console.log(container.style.height);
+		};
+		
+	</script>
 
 </html>
+
